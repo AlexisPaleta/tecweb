@@ -111,6 +111,22 @@ echo "<br>";
 echo '$z[0] en el ámbito simple: ' . $z[0] . "\n";
 echo "<br>";
 
+print_r("<h2>Ejercicio 5:</h2>");
+echo "<br>";
+$a2 = "7 personas";
+$b2 = (integer) $a2;
+$a2 = "9E3";
+$c2 = (double) $a2;
+// Les cambié el nombre porque antes estaban funcionando mal
+echo "<br>";
+print_r("Contenido de a2 = $a2");
+echo "<br>";
+print_r("Contenido de b2 = $b2");
+echo "<br>";
+print_r("Contenido de c2 = $c2");
+echo "<br>";
+
+
 ?>
 </body>
 </html>

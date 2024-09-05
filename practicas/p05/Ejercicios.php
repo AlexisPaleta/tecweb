@@ -8,7 +8,7 @@
 <body>
 <?php
 //EJERCICIO 1:
-print_r("Ejercicio 1:");
+print_r("<h2>Ejercicio 1:</h2>");
 echo "<br>";
 //Determina cuál de las siguientes variables son válidas y explica por qué:
 $_myvar = 1; //su nombre empieza por _ lo que es permitido
@@ -33,7 +33,7 @@ echo "<br>";
 print_r("\$house*5 = 1 // da Error por el *");
 echo "<br>";
 
-print_r("Ejercicio 2:");
+print_r("<h2>Ejercicio 2:</h2>");
 echo "<br>";
 $a = "ManejadorSQL";
 $b = 'MySQL';

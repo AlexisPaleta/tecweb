@@ -88,7 +88,7 @@ print_r("Contenido de b = $b");
 echo "<br>";
 $z[0] = "MySQL";
 echo "<br>";
-print_r("Contenido de Z[0] = $Z[0]");
+print_r("Contenido de Z[0] = $z[0]");
 echo "<br>";
 
 

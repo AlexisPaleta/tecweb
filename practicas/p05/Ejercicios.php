@@ -41,9 +41,9 @@ $c = &$a;
 
 print_r("Contenido de a = $a");
 echo "<br>";
-print_r("Contenido de a = $b");
+print_r("Contenido de b = $b");
 echo "<br>";
-print_r("Contenido de a = $c");
+print_r("Contenido de c = $c");
 echo "<br>";
 
 print_r("MODIFICANDO...");
@@ -52,12 +52,42 @@ $a = "PHP SERVER";
 $b = &$a;
 print_r("Contenido de a = $a");
 echo "<br>";
-print_r("Contenido de a = $b");
+print_r("Contenido de b = $b");
 echo "<br>";
-print_r("Contenido de a = $c");
+print_r("Contenido de c = $c");
 echo "<br>";
 print_r("Lo que ocurrió fue que al inicio a poseia una cadena, b otra aparte, pero a c se le asignó la dirección de memoria de a, por lo que entonces ahora c contiene lo que este guardado en la variable a, eso se muestra en la primera impresión, después se ve cómo al asignar en b la dirección de memoria de 'a' también, ahora si se modifica 'a' cambiarán los 3 ");
-
+echo "<br>";
+print_r("<h2>Ejercicio 2:</h2>");
+echo "<br>";
+$a = "PHP5";
+echo "<br>";
+print_r("Contenido de a = $a");
+echo "<br>";
+$z[] = &$a;
+echo "<br>";
+print_r("Contenido de z[0] = $z[0]");
+echo "<br>";
+$b = "5a version de PHP";
+echo "<br>";
+print_r("Contenido de b = $b");
+echo "<br>";
+$c = $b*10;
+echo "<br>";
+print_r("Contenido de c = $c");
+echo "<br>";
+$a .= $b;
+echo "<br>";
+print_r("Contenido de a = $a");
+echo "<br>";
+$b *= $c;
+echo "<br>";
+print_r("Contenido de b = $b");
+echo "<br>";
+$z[0] = "MySQL";
+echo "<br>";
+print_r("Contenido de Z[0] = $Z[0]");
+echo "<br>";
 ?>
 </body>
 </html>

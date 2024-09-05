@@ -154,7 +154,21 @@ echo("var_dump imprime:");
 echo "<br>";
 var_dump($a3, $b3, $c3, $d, $e, $f);
 echo "<br>";
-echo("La funcion que uso para mostrar c3 y e es: echo var_export(\$c3, true);")
+echo("La funcion que uso para mostrar c3 y e es: echo var_export(\$c3, true);");
+
+print_r("<h2>Ejercicio 7:</h2>");
+echo "<br>";
+
+// Versión de Apache
+echo "Versión del servidor (Apache): " . $_SERVER['SERVER_SOFTWARE'] . "<br>";
+// Versión de PHP
+echo "Versión de PHP: " . phpversion() . "<br>";
+// Nombre del sistema operativo del servidor
+echo "Sistema operativo del servidor: " . PHP_OS . "<br>";
+// Idioma del navegador
+echo "Idioma del navegador: " . $_SERVER['HTTP_ACCEPT_LANGUAGE'] . "<br>";
+
+
 
 
 

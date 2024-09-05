@@ -127,7 +127,34 @@ print_r("Contenido de c2 = $c2");
 echo "<br>";
 
 
+print_r("<h2>Ejercicio 6:</h2>");
+echo "<br>";
+$a3 = "0";
+$b3 = "TRUE";
+$c3 = FALSE;
+$d = ($a3 OR $b3);
+$e = ($a3 AND $c3);
+$f = ($a3 XOR $b3);
 
+print_r("Contenido de a3 = $a3");
+echo "<br>";
+print_r("Contenido de b3 = $b3");
+echo "<br>";
+print_r("Contenido de c3 = ");
+echo var_export($c3, true);
+echo "<br>";
+print_r("Contenido de d = $d");
+echo "<br>";
+print_r("Contenido de e = ");
+echo var_export($e, true);
+echo "<br>";
+print_r("Contenido de f = $f");
+echo "<br>";
+echo("var_dump imprime:");
+echo "<br>";
+var_dump($a3, $b3, $c3, $d, $e, $f);
+echo "<br>";
+echo("La funcion que uso para mostrar c3 y e es: echo var_export(\$c3, true);")
 
 
 

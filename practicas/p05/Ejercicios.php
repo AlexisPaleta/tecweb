@@ -127,6 +127,10 @@ print_r("Contenido de c2 = $c2");
 echo "<br>";
 
 
+
+
+
+
 ?>
 </body>
 </html>

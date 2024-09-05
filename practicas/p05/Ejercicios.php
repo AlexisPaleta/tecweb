@@ -58,7 +58,9 @@ print_r("Contenido de c = $c");
 echo "<br>";
 print_r("Lo que ocurrió fue que al inicio a poseia una cadena, b otra aparte, pero a c se le asignó la dirección de memoria de a, por lo que entonces ahora c contiene lo que este guardado en la variable a, eso se muestra en la primera impresión, después se ve cómo al asignar en b la dirección de memoria de 'a' también, ahora si se modifica 'a' cambiarán los 3 ");
 echo "<br>";
-print_r("<h2>Ejercicio 2:</h2>");
+
+
+print_r("<h2>Ejercicio 3:</h2>");
 echo "<br>";
 $a = "PHP5";
 echo "<br>";
@@ -88,6 +90,27 @@ $z[0] = "MySQL";
 echo "<br>";
 print_r("Contenido de Z[0] = $Z[0]");
 echo "<br>";
+
+
+print_r("<h2>Ejercicio 4:</h2>");
+echo "<br>";
+echo '$a en el ámbito global: ' . $GLOBALS["a"] . "\n";
+echo "<br>";
+echo '$a en el ámbito simple: ' . $a . "\n";
+echo "<br>";
+echo '$b en el ámbito global: ' . $GLOBALS["b"] . "\n";
+echo "<br>";
+echo '$b en el ámbito simple: ' . $b . "\n";
+echo "<br>";
+echo '$c en el ámbito global: ' . $GLOBALS["c"] . "\n";
+echo "<br>";
+echo '$c en el ámbito simple: ' . $c . "\n";
+echo "<br>";
+echo '$z en el ámbito global: ' . $GLOBALS["z"] . "\n";
+echo "<br>";
+echo '$z[0] en el ámbito simple: ' . $z[0] . "\n";
+echo "<br>";
+
 ?>
 </body>
 </html>

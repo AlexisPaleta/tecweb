@@ -73,6 +73,20 @@
         <input type="submit" value="Enviar">
     </form>
     <br>
+    <h2>Ejercicio 6:</h2>
+    <form action="http://localhost/tecweb/practicas/p07/src/ejercicio6.php" method="post">
+        <label>Sexo: 
+            <select name="sexo">
+                <option value="femenino">Femenino</option>
+                <option value="masculino">Masculino</option>
+            </select>
+        </label>
+        <br>
+        <label>Edad: <input type="number" name="edad" min="0" max="120"></label>
+        <br>
+        <input type="submit" value="Enviar">
+    </form>
+    <br>
     
 
         

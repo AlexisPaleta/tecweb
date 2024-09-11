@@ -22,13 +22,31 @@
     <?php
         if(isset($_GET['numero']))
         {
+            echo "<h2>Ejercicio 1</h2>";
             echo "<h3>";
             Multiplo();
             echo"</h3>";
             echo "<br>";
-            echo "<p>2.- Ejercicio 2</p>";
+            echo "<h2>Ejercicio 2</h2>";
             echo "<h3>";
             Aleatorios();
+            echo"</h3>";
+            
+        }
+    ?>
+
+<?php
+        if(isset($_GET['numeroM']))
+        {   
+            echo "<br>";
+            echo "<h2>Ejercicio 3 version 1: CICLO WHILE</h2>";
+            echo "<h3>";
+            Ejercicio3v1();
+            echo"</h3>";
+            echo "<br>";
+            echo "<h2>Ejercicio 3 version 2: CICLO DO WHILE</h2>";
+            echo "<h3>";
+            Ejercicio3v2();
             echo"</h3>";
             
         }

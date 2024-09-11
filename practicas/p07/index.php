@@ -11,9 +11,11 @@
     <?php 
         include("src/funciones.php");
     ?>
-    <p>Escribir programa para comprobar si un número es un múltiplo de 5 y 7</p>
+    <p>1.- Escribir programa para comprobar si un número es un múltiplo de 5 y 7</p>
     <form action="http://localhost/tecweb/practicas/p07/index.php" method = "GET">
-        <label>Ingresa un número: <input type="number" name="numero"></label>
+        <label>Ingresa un número para ver si es Múltiplo de 5 y 7: <input type="number" name="numero" min="0"></label>
+        <br>
+        <label>Ingresa un número para obtener otro aleatorio que sea múltiplo de este: <input type="number" name="numeroM" min="0"></label>
         <br>
         <input type="submit" value="Enviar">
     </form>
@@ -23,6 +25,12 @@
             echo "<h3>";
             Multiplo();
             echo"</h3>";
+            echo "<br>";
+            echo "<p>2.- Ejercicio 2</p>";
+            echo "<h3>";
+            Aleatorios();
+            echo"</h3>";
+            
         }
     ?>
 

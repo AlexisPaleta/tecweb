@@ -7,7 +7,7 @@
     <title>Práctica 07</title>
 </head>
 <body>
-    <h2>Ejercicio 1</h2>
+    <h2>Primeros 4 ejercicios:</h2>
     <?php 
         include("src/funciones.php");
     ?>
@@ -59,21 +59,21 @@
         echo"</h3>";
     ?>
 
-    <h2>Ejemplo de POST</h2>
-    <form action="http://localhost/tecweb/practicas/p07/index.php" method="post">
-        Name: <input type="text" name="name"><br>
-        E-mail: <input type="text" name="email"><br>
-        <input type="submit">
+    <h2>Ejercicio 5:</h2>
+    <form action="http://localhost/tecweb/practicas/p07/src/ejercicio5.php" method="post">
+        <label>Sexo: 
+            <select name="sexo">
+                <option value="femenino">Femenino</option>
+                <option value="masculino">Masculino</option>
+            </select>
+        </label>
+        <br>
+        <label>Edad: <input type="number" name="edad" min="0" max="120"></label>
+        <br>
+        <input type="submit" value="Enviar">
     </form>
     <br>
-    <?php
-        if(isset($_POST["name"]) && isset($_POST["email"]))
-        {
-            echo $_POST["name"];
-            echo '<br>';
-            echo $_POST["email"];
-        }
-    ?>
+    
 
         
 

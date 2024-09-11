@@ -52,6 +52,13 @@
         }
     ?>
 
+    <?php
+        echo "<h2>Ejercicio 4</h2>";
+        echo "<h3>";
+        Ascii();
+        echo"</h3>";
+    ?>
+
     <h2>Ejemplo de POST</h2>
     <form action="http://localhost/tecweb/practicas/p07/index.php" method="post">
         Name: <input type="text" name="name"><br>

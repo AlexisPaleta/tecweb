@@ -56,4 +56,17 @@ function Ejercicio3v2(){//En la version del Do While ocupa menos lineas, es mas 
     echo "El primer número múltiplo generado de $num es ".$random;
 }
 
+//Ejercicio 4:
+function Ascii(){
+    for($i = 97; $i<123; $i++){
+        $arreglo[$i] = chr($i);
+    }
+    echo "Los caracteres ASCII son:";
+    foreach ($arreglo as $key => $letra) {//$Key toma el valor del indice, y $letra el valor de lo almacenado
+        //dentro de ese indice
+        echo "<br>";
+        echo "ASCII[$key] = $letra";
+    }
+}
+
 ?>

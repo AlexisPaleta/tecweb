@@ -9,7 +9,8 @@
 <body>
     <h2>Primeros 4 ejercicios:</h2>
     <?php 
-        include("src/funciones.php");
+        include("src/funciones.php"); //Se agrega el archivo de funciones.php, lo que hace que ahora
+        //dichas funciones esten ahora disponibles aqui en el index
     ?>
     <p>1.- Escribir programa para comprobar si un número es un múltiplo de 5 y 7</p>
     <form action="http://localhost/tecweb/practicas/p07/index.php" method = "GET">
@@ -24,7 +25,7 @@
         {
             echo "<h2>Ejercicio 1</h2>";
             echo "<h3>";
-            Multiplo();
+            Multiplo(); //Se manda a llamar a una de las funciones del archivo de funciojes.php
             echo"</h3>";
             echo "<br>";
             echo "<h2>Ejercicio 2</h2>";
@@ -74,19 +75,10 @@
     </form>
     <br>
     <h2>Ejercicio 6:</h2>
-    <form action="http://localhost/tecweb/practicas/p07/src/ejercicio6.php" method="post">
-        <label>Sexo: 
-            <select name="sexo">
-                <option value="femenino">Femenino</option>
-                <option value="masculino">Masculino</option>
-            </select>
-        </label>
-        <br>
-        <label>Edad: <input type="number" name="edad" min="0" max="120"></label>
-        <br>
-        <input type="submit" value="Enviar">
-    </form>
     <br>
+    <?php 
+        include("src/ejercicio6.php");
+    ?>
     
 
         

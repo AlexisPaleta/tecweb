@@ -16,12 +16,16 @@ function Multiplo(){
 //Segunda funcion, ejercicio 2:
 function Aleatorios(){
     $contador = 0;
+    echo "<br>";
+    echo "NÚMEROS GENERADOS:";
     while(true){
         $matriz[$contador][0] = rand(1,100);
         $matriz[$contador][1] = rand(1,100);
         $matriz[$contador][2] = rand(1,100);
         //Se realiza la comprobacion de si el primer numero es par, el segundo impar y el tercero es par
         //solo en caso de que se cumplan las 3 condiciones se va a salir del ciclo
+        echo "<br>";
+        echo $matriz[$contador][0]. " ".$matriz[$contador][1]." ".$matriz[$contador][2];
         if(($matriz[$contador][0] % 2 == 0) && ($matriz[$contador][1] % 2 == 1) && ($matriz[$contador][2] % 2 == 0)){
             $contador++;//Para imprimir correctamente el numero de iteraciones, ya que el contador
             //inicia en 0
@@ -29,6 +33,7 @@ function Aleatorios(){
         }
         $contador++;
     }
+    echo "<br>";
     echo $contador*4," números obtenidos en $contador iteraciones";
 }
 

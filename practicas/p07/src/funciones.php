@@ -41,6 +41,9 @@ function Aleatorios(){
 function Ejercicio3v1(){
     $num = $_GET["numeroM"];
     $random = rand(1,100);
+    echo "<br>";
+    echo "El numero generado aleatoriamente fue: $random";
+    echo "<br>";
     if($random % $num ==0){
         echo "El primer número múltiplo generado de $num es ".$random;
         return;//Se termina la funcion en caso de que ya se haya encontrado el numero, sino se procede
@@ -48,8 +51,11 @@ function Ejercicio3v1(){
     }
     while($random % $num !=0){
         $random = rand(1,100);
+        echo "El numero generado aleatoriamente fue: $random";
+        echo "<br>";
     }
     echo "El primer número múltiplo generado de $num es ".$random;
+    echo "<br>";
 }
 
 function Ejercicio3v2(){//En la version del Do While ocupa menos lineas, es mas sencillo
@@ -57,6 +63,8 @@ function Ejercicio3v2(){//En la version del Do While ocupa menos lineas, es mas 
 
     do{
         $random = rand(1,100);
+        echo "El numero generado aleatoriamente fue: $random";
+        echo "<br>";
     }while($random % $num !=0);
     echo "El primer número múltiplo generado de $num es ".$random;
 }

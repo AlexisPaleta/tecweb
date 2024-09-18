@@ -1,4 +1,8 @@
 <?php
+
+	// Lee el archivo de configuración, aqui puse mi contraseña y usuario
+	$config = parse_ini_file('../../config.ini', true);
+
     header("Content-Type: application/json; charset=utf-8"); 
     $data = array();
 
@@ -14,7 +18,7 @@
 	if (!empty($tope))
 	{
 		/** SE CREA EL OBJETO DE CONEXION */
-		@$link = new mysqli('localhost', 'root', '12345678a', 'marketzone');
+		@$link = new mysqli('localhost', $config['database']['user'], $config['database']['password'], 'marketzone');
         /** NOTA: con @ se suprime el Warning para gestionar el error por medio de código */
 
 		/** comprobar la conexión */
@@ -23,7 +27,7 @@
 			die('Falló la conexión: '.$link->connect_error.'<br/>');
 			//exit();
 		}
-
+		$link->set_charset("utf8mb4");
 		/** Crear una tabla que no devuelve un conjunto de resultados */
 		if ( $result = $link->query("SELECT * FROM productos WHERE unidades <= $tope") ) 
 		{

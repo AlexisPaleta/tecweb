@@ -2,13 +2,17 @@
 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
 	<?php
+	header('Content-Type: text/html; charset=UTF-8');
+	// Lee el archivo de configuración, aqui puse mi contraseña y usuario
+	$config = parse_ini_file('../../config.ini', true);
+
 	if(isset($_GET['id']))
 		$id = $_GET['id'];
 
 	if (!empty($id))
 	{
 		/** SE CREA EL OBJETO DE CONEXION */
-		@$link = new mysqli('localhost', 'root', '12345678a', 'marketzone');	
+		@$link = new mysqli('localhost', $config['database']['user'], $config['database']['password'], 'marketzone');
 
 		/** comprobar la conexión */
 		if ($link->connect_errno) 
@@ -16,7 +20,7 @@
 			die('Falló la conexión: '.$link->connect_error.'<br/>');
 			    /** NOTA: con @ se suprime el Warning para gestionar el error por medio de código */
 		}
-
+		$link->set_charset("utf8mb4");
 		/** Crear una tabla que no devuelve un conjunto de resultados */
 		if ( $result = $link->query("SELECT * FROM productos WHERE id = '{$id}'") ) 
 		{
@@ -30,6 +34,7 @@
 	?>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta charset="UTF-8">
 		<title>Producto</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	</head>
@@ -61,12 +66,12 @@
 						<td><?= $row['modelo'] ?></td>
 						<td><?= $row['precio'] ?></td>
 						<td><?= $row['unidades'] ?></td>
-						<td><?= utf8_encode($row['detalles']) ?></td>
+						<td><?= ($row['detalles']) ?></td>
 						<td><img src=<?= $row['imagen'] ?> ></td>
 					</tr>
 				</tbody>
 			</table>
-
+			
 		<?php elseif(!empty($id)) : ?>
 
 			 <script>

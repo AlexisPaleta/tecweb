@@ -37,7 +37,7 @@
             /** Se crea un arreglo con la estructura deseada */
             foreach($row as $num => $registro) {            // Se recorren tuplas
                 foreach($registro as $key => $value) {      // Se recorren campos
-                    $data[$num][$key] = utf8_encode($value);
+                    $data[$num][$key] = ($value);
                 }
             }
 

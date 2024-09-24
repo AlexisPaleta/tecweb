@@ -6,6 +6,7 @@ $precio = $_POST['precio'];
 $detalles = $_POST['detalles'];
 $unidades = $_POST['unidades'];
 $imagen   = $_POST['imagen'];
+$eliminado = 0;
 
 $config = parse_ini_file('../../config.ini', true);
 
@@ -26,7 +27,7 @@ if ( $result = $link->query("SELECT * FROM productos WHERE nombre='{$nombre}' an
                 echo "<h1>ERROR: YA HAY DATOS REGISTRADOS CON ESE NOMBRE-MARCA-MODELO</h1>";
             }else{
 
-                $sql = "INSERT INTO productos VALUES (null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}')";
+                $sql = "INSERT INTO productos VALUES (null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}', '{$eliminado}')";
                 if ( $link->query($sql) ) 
                 {
                 }
@@ -45,17 +46,6 @@ if ( $result = $link->query("SELECT * FROM productos WHERE nombre='{$nombre}' an
                 echo "<p>Imagen: $imagen</p>";
             }
 		}
-
-/** Crear una tabla que no devuelve un conjunto de resultados */
-//$sql = "INSERT INTO productos VALUES (null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}')";
-//if ( $link->query($sql) ) 
-//{
- //   echo 'Producto insertado con ID: '.$link->insert_id;
-//}
-//else
-//{
-//	echo 'El Producto no pudo ser insertado =(';
-//}
 
 $link->close();
 ?>

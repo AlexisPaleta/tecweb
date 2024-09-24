@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RegistrarProductos</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <h1>Formulario para el registro de Productos</h1>
+    <div class="contenedor">
+        <form action="http://localhost/tecweb/practicas/p09/set_producto_v2.php" method="post">  
+                <div class="inputContainer">
+                    <label>Nombre del producto: <input type="text" name="nombre" placeholder="Termo..."> </label>
+                </div>
+
+                <div class="inputContainer">
+                    <label>Marca del producto: <input type="text" name="marca" placeholder="Stanley..."> </label>
+                </div>
+                
+                <div class="inputContainer">
+                    <label>Modelo del producto: <input type="text" name="modelo" placeholder="HG092..."> </label>
+                </div>
+                
+                <div class="inputContainer">
+                    <label>Precio del producto: <input type="number" name="precio" min="0" value="0.00"></label>
+                </div>
+
+                <div class="inputContainer">
+                    <label>Detalles del producto: <textarea name="detalles" placeholder="El producto presenta..." maxlength="250"></textarea></label>
+                </div>
+
+                <div class="inputContainer">
+                    <label>Unidades del producto: <input type="number" name="unidades" min="0" value="0"></label>
+                </div>
+
+                <div class="inputContainer">
+                    <label>Imagen del producto: <input type="text" name="imagen" placeholder="img/img.png..."> </label>
+                </div>
+
+                <div class="contenedorBoton">
+                    <input type="submit" value="Registrar Producto">
+                </div>
+        </form>
+    </div>
+    
+</body>
+</html>

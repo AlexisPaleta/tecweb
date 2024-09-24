@@ -26,7 +26,7 @@ if ( $result = $link->query("SELECT * FROM productos WHERE nombre='{$nombre}' an
 			if($result->num_rows > 0){
                 echo "<h1>ERROR: YA HAY DATOS REGISTRADOS CON ESE NOMBRE-MARCA-MODELO</h1>";
             }else{
-
+                //Consulta anterior: $sql = "INSERT INTO productos VALUES (null,'{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}', '{$eliminado}')";
                 $sql = "INSERT INTO productos(nombre,marca,modelo,precio,detalles,unidades,imagen,eliminado) VALUES ('{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$imagen}', '{$eliminado}')";
                 if ( $link->query($sql) ) 
                 {
@@ -34,7 +34,7 @@ if ( $result = $link->query("SELECT * FROM productos WHERE nombre='{$nombre}' an
                 else
                 {
                     echo 'El Producto no pudo ser insertado =(';
-                }_
+                }
 
                 echo "<h1>Los Datos ingredados fueron:</h1>";
                 echo "<p>Nombre: $nombre</p>";

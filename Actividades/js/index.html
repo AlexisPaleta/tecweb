@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primer ejercicio JS</title>
+    <script>
+        function getDatos(){
+            var nombre = window.prompt("Nombre:","");
+            var edad = window.prompt("Edad:","");
+
+            var div1 = document.getElementById("nombre");
+            div1.innerHTML = "<h3> Nombre:" + nombre + " </h3>";
+
+            var div2 = document.getElementById("edad");
+            div2.innerHTML = "<h3> Edad:"+ edad + " </h3>";
+        }
+    </script>
+</head>
+<body>
+    <h1>Hola Mundo en JavaScript</h1>
+    <div id="nombre"></div>
+    <div id="edad"></div>
+
+    <input type="button" id="clickme" onclick="getDatos()" value="Clickme">
+</body>
+</html>

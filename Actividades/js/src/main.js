@@ -209,21 +209,89 @@ function Ejemplo13(){
 }
 
 function Ejemplo14(){
-    
+    var div = document.getElementById("Ejemplo14");
+    div.innerHTML +="Cuidado<br>";
+    div.innerHTML +="Ingresa tu documento correctamente<br>";
+    div.innerHTML +="Cuidado<br>";
+    div.innerHTML +="Ingresa tu documento correctamente<br>";
+    div.innerHTML +="Cuidado<br>";
+    div.innerHTML +="Ingresa tu documento correctamente<br>";
 }
 
 function Ejemplo15(){
-    
+    var div = document.getElementById("Ejemplo15");
+    function mostrarMensaje() {
+            div.innerHTML +="Cuidado<br>";
+            div.innerHTML +="Ingresa tu documento correctamente<br>";
+        }
+        mostrarMensaje();
+        mostrarMensaje();
+        mostrarMensaje();
 }
 
 function Ejemplo16(){
-    
+    var div = document.getElementById("Ejemplo16");
+    function mostrarRango(x1,x2) {
+        var inicio;
+        for(inicio=x1; inicio<=x2; inicio++) {
+        div.innerHTML +=inicio+' ';
+        
+        }
+        }
+        var valor1,valor2;
+        valor1 = prompt('Ingresa el valor inferior:', '');
+        valor1 = parseInt(valor1);
+        valor2 = prompt('Ingresa el valor superior:', '');
+        valor2 = parseInt(valor2);
+        mostrarRango(valor1,valor2);
 }
 
 function Ejemplo17(){
-    
+    var div = document.getElementById("Ejemplo17");
+    function convertirCastellano(x) {
+
+        if(x==1)
+            return"uno";
+        else
+            if(x==2)
+        
+            return"dos";
+        else
+            if(x==3)
+            return"tres";
+        else
+            if(x==4)
+        
+            return"cuatro";
+        
+        else
+        
+            if(x==5)
+            return"cinco";
+        else
+            return"valor incorrecto";
+        
+        }
+        var valor = prompt("Ingresa un valor entre 1 y 5","");
+        valor = parseInt(valor);
+        var r = convertirCastellano(valor);
+        div.innerHTML +=r;
 }
 
 function Ejemplo18(){
-    
+    var div = document.getElementById("Ejemplo18");
+    x = prompt('Ingresa el valor:', '');
+    switch (Number(x)) {
+        case 1: div.innerHTML += "uno";
+        break;
+        case 2: div.innerHTML += "dos";
+        break;
+        case 3: div.innerHTML += "tres";
+        break;
+        case 4: div.innerHTML += "cuatro";
+        break;
+        case 5: div.innerHTML += "cinco";
+        break;
+        default: div.innerHTML += "valor incorrecto";
+        }
 }

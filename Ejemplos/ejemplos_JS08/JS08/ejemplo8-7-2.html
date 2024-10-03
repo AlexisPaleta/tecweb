@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Ejemplo 8-7-2: Página 2</title>
+		<script type="text/javascript">
+			function retornar() 
+			{
+				console.log(window.history.length);
+				if (window.history.length>1)
+				{
+				     window.history.go(-1);
+				}
+				else
+				{
+					console.log('llega');
+				    alert('no hay otra página en la cache hacia atrás');
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<a href="javascript:retornar()">Retornar</a>
+	</body>
+</html>

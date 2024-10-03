@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Ejemplo 7-6: Selección de nivel de estudios</title>
+		<script type="text/javascript">
+			function mostrarSeleccionado()
+			{
+				if(document.getElementById('radio1').checked)
+				{
+					alert('no tienes estudios');
+				}
+
+				if(document.getElementById('radio2').checked)
+				{
+				     alert('tienes estudios primarios');
+				}
+
+				if(document.getElementById('radio3').checked)
+				{
+				     alert('tienes estudios secundarios');
+				}
+
+				if(document.getElementById('radio4').checked)
+				{
+				     alert('tienes estudios universitarios');
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<form>
+			<input type="radio" id="radio1" name="estudios">Sin estudios
+			<br>
+			<input type="radio" id="radio2" name="estudios">Primarios
+			<br>
+			<input type="radio" id="radio3" name="estudios">Secundarios
+			<br>
+			<input type="radio" id="radio4" name="estudios">Universitarios
+			<br>
+			<input type="button" value="Mostrar" onClick="mostrarSeleccionado()">
+		</form>
+	</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Ejemplo 7-7: Número de caracteres en párrafo</title>
+		<script type="text/javascript">
+			function controlarCaracteres()
+			{
+				if ( document.getElementById('curriculum').value.length > 2000 )
+				{
+				     alert('curriculum muy largo');
+				}
+				else
+				{
+				     alert('datos correctos');
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<form>
+			<textarea id="curriculum" rows="10" cols="50"></textarea>
+			<br>
+			<input type="button" value="Mostrar" onClick="controlarCaracteres()">
+		</form>
+	</body>
+</html>

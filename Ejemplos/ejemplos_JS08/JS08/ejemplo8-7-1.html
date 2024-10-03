@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Ejemplo 8-7-1: Propiedad history de window</title>
+		<script type="text/javascript">
+			function avanzar()
+			{
+				if (window.history.length>1)
+				{
+				    window.history.go(1);
+				}
+				else
+				{
+				    alert('no hay otra página en la cache hacia adelante');
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<a href="ejemplo8-7-2.html">Ir a la Página 2</a>
+		<br>
+		<br>
+		<a href="javascript:avanzar()">Extraer del cache la segunda Página</a>
+	</body>
+</html>

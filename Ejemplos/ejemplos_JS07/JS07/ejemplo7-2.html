@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Ejemplo 7-2: Entrada de texto</title>
+		<script type="text/javascript">
+			function mostrar()
+			{
+				var nom = document.getElementById('nombre').value;
+				var ed = document.getElementById('edad').value;
+				alert('Ingresó el nombre: ' + nom);
+				alert('Y la edad: ' + ed);
+			}
+		</script>
+	</head>
+	<body>
+		<form>
+			Ingresa tu nombre: <input type="text" id="nombre"/><br/>
+			Ingresa tu edad: <input type="text" id="edad"/><br/>
+			<input type="button" value="Confirmar" onClick="mostrar()"/>
+		</form>
+	</body>
+</html>

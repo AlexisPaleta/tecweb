@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Ejemplo 6-1: Clase "Date"</title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			function mostrarFechaHora()
+			{
+				var fecha
+				fecha = new Date();
+				document.write('Hoy es ');
+				document.write(fecha.getDate()+'/');
+				document.write((fecha.getMonth()+1)+'/');
+				document.write(fecha.getFullYear());
+				document.write('<br>');
+				document.write('Es la hora ');
+				document.write(fecha.getHours()+':');
+				document.write(fecha.getMinutes()+':');
+				document.write(fecha.getSeconds());
+			}
+			//Llamada a la función
+			mostrarFechaHora();
+		</script>
+	</body>
+</html>

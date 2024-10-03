@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Ejemplo 8-4: onLoad </title>
+		<script type="text/javascript">
+			function activarPrimerControl()
+			{
+				document.getElementById('nombre').focus();
+			}
+		</script>
+	</head>
+	<body onLoad="activarPrimerControl()">
+		<form>
+			Ingrese su nombre:	<input type="text" id="nombre"><br>
+			Ingrese su edad:	<input type="text" id="edad"><br>
+			<input type="button" value="Confirmar" onClick="activarPrimerControl()">
+		</form>
+	</body>
+</html>

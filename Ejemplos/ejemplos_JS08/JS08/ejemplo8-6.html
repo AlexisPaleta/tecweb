@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Ejemplo 8-6: Propiedad location de window </title>
+		<script type="text/javascript">
+			function verificarEntrada()
+			{
+				if( window.confirm('Desea salir del sitio e ingresar al periodico La Jornada?'))
+				{
+					window.location = 'http://www.jornada.unam.mx/ultimas/';
+				}
+				else
+				{
+					window.alert('No hay problema');
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<a href="javascript:verificarEntrada()">Ingresar a La Jornada</a>
+	</body>
+</html>

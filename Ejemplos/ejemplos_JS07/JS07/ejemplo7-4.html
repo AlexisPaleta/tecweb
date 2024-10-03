@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Ejemplo 7-4: Menú de valores por defecto</title>
+		<script type="text/javascript">
+			function cambiarColor()
+			{
+				var seleccion=document.getElementById('select1');
+				document.getElementById('text1').value=seleccion.selectedIndex;
+				document.getElementById('text2').value=seleccion.options[seleccion.selectedIndex].text;
+				document.getElementById('text3').value=seleccion.options[seleccion.selectedIndex].value;
+			}
+		</script>
+	</head>
+	<body>
+		<form>
+			<select id="select1" onChange="cambiarColor()">
+				<option value="0xff0000">Rojo</option>
+				<option value="0x00ff00">Verde</option>
+				<option value="0x0000ff">Azul</option>
+			</select>
+			<br>
+			Número de índice seleccionado del objeto SELECT:<input type="text" id="text1">
+			<br>
+			Texto seleccionado:<input type="text" id="text2">
+			<br>
+			Valor asociado:<input type="text" id="text3">
+			<br>
+		</form>
+	</body>
+</html>

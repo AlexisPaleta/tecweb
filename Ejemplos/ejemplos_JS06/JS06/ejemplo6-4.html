@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Ejemplo 6-4: Clase "Math" (random)</title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			var selec = prompt('Ingresa un valor entre 1 y 10','');
+			selec = parseInt(selec);
+
+			var num = parseInt(Math.random()*10)+1;
+
+			if(num==selec)
+				document.write('Ganó el número que se sorteó es el '+ num);
+			else
+				document.write('Lo siento se sorteó el valor ' + num + ' y eligiste el ' + selec);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Ejemplo 8-3: onMouseOver y onMouseOut II</title>
+		<script type="text/javascript">
+			function pintar(objeto,col)
+			{
+				objeto.bgColor=col;
+			}
+
+			function alerta()
+			{
+				alert('click sobre la celda');
+			}
+		</script>
+	</head>
+	<body>
+		<table border="1">
+			<tr>
+				<td onMouseOver="pintar(this,'#ffff00')" onMouseOut="pintar(this,'#ffffff')" onclick="alerta()">amarillo</td>
+				<td onMouseOver="pintar(this,'#00ffff')" onMouseOut="pintar(this,'#ffffff')">cian</td>
+				<td onMouseOver="pintar(this,'#ff00ff')" onMouseOut="pintar(this,'#ffffff')">magenta</td>
+			</tr>
+		</table>
+	</body>
+</html>

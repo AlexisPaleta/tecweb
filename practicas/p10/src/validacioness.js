@@ -2,13 +2,10 @@ const formulario = document.getElementById("formulario");
 console.log("hola");
 
 formulario.addEventListener('submit', (e) =>{
-    e.preventDefault();
-    nombre();
-    marca();
-    modelo();
-    precio();
-    detalles();
-    unidades();
+    
+    if(nombre() || marca() || modelo() || precio() || detalles() || unidades()){
+        e.preventDefault();
+    }
     imagen();
 });
 
@@ -32,8 +29,10 @@ function marca(){
     let error = document.getElementById("mar");
     if(opcion == ""){
         error.textContent = "Selecciona una marca";
+        return true;
     }else{
         error.textContent = "";
+        return false;
     }
 }
 
@@ -43,9 +42,11 @@ function modelo(){
     let regex = /^[a-zA-Z0-9]{1,25}$/; // Expresión regular
     if(modelo.length > 25 || regex.test(modelo) == false){
         error.textContent = "La marca debe tener menos de 25 caracteres y ser alfanumerica";
+        return true;
     }else{
         console.log("bien modelo");
         error.textContent = "";
+        return false;
     }
 }
 
@@ -54,9 +55,11 @@ function precio(){
     let error = document.getElementById("pre");
     if(Number(precio) < 99.99){
         error.textContent = "El precio debe ser mayor a 99.99";
+        return true;
     }else{
         console.log("precio bien");
         error.textContent = "";
+        return false;
     }
 }
 
@@ -67,8 +70,10 @@ function detalles(){
     if(detalles!= ""){
         if(detalles.length > 255){
             error.textContent = "Los detalles tienen un maximo de 255 caracteres";
+            return true;
         }
     }
+    return false;
 }
 
 function unidades(){
@@ -76,9 +81,11 @@ function unidades(){
     let error = document.getElementById("det");
     if(Number(unidades) < 0){
         error.textContent = "El numero de unidades del producto debe ser igual o mayor a cero";
+        return true;
     }else{
         console.log("uni bien");
         error.textContent = "";
+        return false;
     }
 }
 

@@ -12,7 +12,8 @@
     <h1>Formulario para el registro de Productos</h1>
     
     <div class="contenedor">
-        <form action="" method="post" id="formulario">  
+        <form action="update_producto.php" method="post" id="formulario">  
+                <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
                 <div class="inputContainer">
                     <label>Nombre del producto: <input type="text" name="nombre" placeholder="Termo..." id="nombre" value="<?= $_GET['nombre'] ?>" required> </label>
                     <p class="error" id="nom"></p>

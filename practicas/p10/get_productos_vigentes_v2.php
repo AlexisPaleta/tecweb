@@ -89,8 +89,8 @@
 					<th scope="col">Marca</th>
 					<th scope="col">Modelo</th>
 					<th scope="col">Precio</th>
-					<th scope="col">Unidades</th>
 					<th scope="col">Detalles</th>
+					<th scope="col">Unidades</th>
 					<th scope="col">Imagen</th>
 					<th scope="col">Edicion</th>
 					</tr>

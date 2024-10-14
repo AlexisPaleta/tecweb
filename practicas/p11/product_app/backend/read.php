@@ -7,7 +7,7 @@
     if( isset($_POST['consulta']) ) {
         $consulta = $_POST['consulta'];
         // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
-        if ( $result = $conexion->query("SELECT * FROM `productos` WHERE nombre like '%{$consulta}%' or detalles like '%{$consulta}%'") ) {//Aqui se hace de esta manera
+        if ( $result = $conexion->query("SELECT * FROM `productos` WHERE nombre like '%{$consulta}%' or detalles like '%{$consulta}%' or marca like '%{$consulta}%'") ) {//Aqui se hace de esta manera
             //la consulta, pero lo mejor no seria hacerlo asi, ya que es poco seguro, puede sufirir de inyeccion sql, entonces lo mejor seria hacerlo de la siguiente manera
             // $stmt = $conexion->prepare("SELECT * FROM `productos` WHERE nombre like ? or detalles like ?"); en donde los signos de interrogacion son los parametros que se van a pasar
             // $stmt->bind_param("ss", $consulta, $consulta); //aqui se pasan los parametros, se pone una letra s por cada parametro que se va a pasar, en este caso son dos, y es

@@ -2,7 +2,7 @@
     $conexion = @mysqli_connect(
         'localhost',
         'root',
-        '12345678a',
+        'cursodbAPO11?',
         'marketzone'
     );
 
@@ -10,6 +10,6 @@
      * NOTA: si la conexión falló $conexion contendrá false
      **/
     if(!$conexion) {
-        die('¡Base de datos NO conextada!');
+        die('¡Base de datos NO conectada!');
     }
 ?>

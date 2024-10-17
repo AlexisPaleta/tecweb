@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>Ejemplo de iterador</h1>
+
+    <a href="#">Link 1</a>
+    <a href="#">Link 2</a>
+    <a href="#">Link 3</a>
+    <a href="#">Link 4</a>
+    <a href="#">Link 5</a>
+
+    <!--script>
+        $('a').each( function(index, element){
+            console.log( $(element).css({color:'green'}) );
+        });
+    </script-->
+
+    <script>
+        $('a').each( function(){
+            console.log( $(this).css({color:'green'}) );
+        });
+    </script>
+</body>
+</html>

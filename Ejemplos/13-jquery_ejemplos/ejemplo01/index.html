@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>Prueba de ready</h1>
+    <script src="./main.js"></script>
+    <script>
+      /**
+       * SE EJECUTAN EN 3ER LUGAR (AL MISMO TIEMPO) 
+       **/
+      $(function() {
+        console.log('el documento está preparado (function-jquery)');
+      });
+
+      for(var i=0; i<100; i++)
+      {
+        console.log('Esto se ejecuta antes');
+      }
+
+      /**
+       * SE EJECUTAN EN 1ER LUGAR (AL MISMO TIEMPO) 
+       **/
+      window.onload=function() {
+        console.log('el documento está preparado (onload)');
+      }
+
+      $(window).on("load", function() {
+        console.log('el documento está preparado (onload-jquery)');
+      });
+    </script>
+</body>
+</html>

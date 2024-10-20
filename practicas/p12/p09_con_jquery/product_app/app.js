@@ -54,6 +54,40 @@ $(function() {
             },
         });
     });
+
+    // SE AGREGA UN PRODUCTO
+    $('#product-form').submit(function(e) {
+        e.preventDefault(); // Se previene el comportamiento por defecto del formulario
+        
+        // SE OBTIENE DESDE EL FORMULARIO EL JSON A ENVIAR
+        let productoJsonString = $('#description').val();
+        // SE CONVIERTE EL JSON DE STRING A OBJETO
+        let finalJSON = JSON.parse(productoJsonString);
+        // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
+        finalJSON['nombre'] = $('#name').val();
+        // SE OBTIENE EL STRING DEL JSON FINAL
+
+        //Validaciones de los datos de los productos a ingresar, en caso de que alguno no sea correcto se muestra
+        //un mensaje de alerta y se detiene la ejecución de la función
+        if(nombre(finalJSON['nombre']) || marca(finalJSON['marca']) || modelo(finalJSON['modelo']) || precio(finalJSON['precio']) || detalles(finalJSON['detalles']) || unidades(finalJSON['unidades'])){
+            return;
+        }
+
+        $.post('backend/product-add.php', finalJSON, function(response) {//Se hace una peticion POST al servidor con el JSON del producto a agregar
+            console.log(response);//Se imprime la respuesta del servidor en la consola
+        });
+        
+    });
+
+    //Esta funcion se ejecuta apenas carga la pagina, se hace una peticion GET al servidor para obtener la lista de productos
+    $.ajax({
+        url: 'backend/product-list.php',
+        type: 'GET',
+        success: function(response) {
+            let productos = JSON.parse(response);
+            console.log(productos);
+        }
+    });
     
 });
 

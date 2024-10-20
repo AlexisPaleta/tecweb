@@ -21,8 +21,12 @@
                 $data['status'] =  "success";
                 $data['message'] =  "Producto agregado";
             } else {
+                $data['status'] =  "error";
                 $data['message'] = "ERROR: No se ejecuto $sql. " . mysqli_error($conexion);
             }
+        }else{
+            $data['status'] =  "error";
+            $data['message'] = "Ya existe un producto con ese nombre";
         }
 
         $result->free();

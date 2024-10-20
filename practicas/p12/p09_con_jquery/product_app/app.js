@@ -25,7 +25,7 @@ $(function() {
     listarProductos(); //Se listan los productos nuevamente, para que se muestren en la tabla incluso si se agrega un producto
     
     $('#product-result').hide();//Se oculta el contenedor de productos al cargar la pagina
-    $('#buscar').click(function(e) { //Cuando se haga click en el boton de buscar, se ejecuta la funcion
+    $('#search').keyup(function(e) { //Cuando se haga click en el boton de buscar, se ejecuta la funcion
         e.preventDefault();//Se previene el comportamiento por defecto del boton
         let search = $('#search').val();
 
@@ -38,7 +38,8 @@ $(function() {
         $.ajax({ //Este es el metodo que usa JQUERY para hacer peticiones AJAX, se definen los parametros de la peticion en un objeto, en AJAX puro es lo de usar el objeto XMLHttpRequest
             url: 'backend/product-search.php',
             type: 'GET',
-            data: {search: search}, //Se envia el parametro de busqueda al servidor
+            data: {search: search}, //Se envia el parametro de busqueda al servidor, este se envia como un objeto, donde el nombre del parametro es search y el valor es el valor del campo de busqueda
+            //al momento de recuperarlo en el lado del servidor se recupera como $_GET['search']
             success: function(response) {
 
                 if(response == "[]"){//Si la respuesta es un JSON vacio, no se muestra nada
@@ -124,7 +125,11 @@ $(function() {
         let productoID = $(filaTR).attr('product-id');//Se obtiene el ID del producto, el .attr() es un metodo de JQUERY que permite obtener el valor de un atributo de un elemento HTML
         //como al momento de usar mi metodo de listar productos, guarde el ID del producto en el atributo product-id de la fila de la tabla, puedo obtenerlo de esta manera
         console.log(productoID);//Se imprime el ID del producto en la consola
-        
+
+        $.post('backend/product-delete.php', {id: productoID}, function(response) { //Se crea una peticion POST al servidor para eliminar el producto, se envia el ID del producto a eliminar
+            console.log(response);//Se imprime la respuesta del servidor en la consola
+        });
+        listarProductos();//Se listan los productos nuevamente, para que se muestren en la tabla, tomando en cuenta ahora al producto eliminado, entonces ese producto ya no se muestra
     });
     
 });

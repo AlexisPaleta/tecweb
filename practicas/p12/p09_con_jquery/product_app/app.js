@@ -73,6 +73,7 @@ $(function() {
             return;
         }
 
+        finalJSON = JSON.stringify(finalJSON);//Se convierte el JSON final a un string para poder enviarlo al servidor, ya que en el servidor se reconvierte luego a JSON
         $.post('backend/product-add.php', finalJSON, function(response) {//Se hace una peticion POST al servidor con el JSON del producto a agregar
             console.log(response);//Se imprime la respuesta del servidor en la consola
         });

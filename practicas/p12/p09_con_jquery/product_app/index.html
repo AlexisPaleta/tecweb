@@ -16,11 +16,12 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto"></ul>
+        <ul class="navbar-nav ml-auto">
           <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" name="search" id="search" type="search" placeholder="ID, marca o descripción" aria-label="Search">
-            <button class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button>
+            <button class="btn btn-success my-2 my-sm-0" type="submit" id="buscar">Buscar</button>
           </form>
+        </ul>
       </div>
     </nav>
 
@@ -48,7 +49,7 @@
 
         <!-- TABLA  -->
         <div class="col-md-7">
-          <div class="card my-4 d-none" id="product-result">
+          <div class="card my-4" id="product-result">
             <div class="card-body">
               <!-- RESULTADO -->
               <ul id="container"></ul>

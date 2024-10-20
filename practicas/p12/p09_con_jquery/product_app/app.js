@@ -20,6 +20,47 @@ function init() {
     //listarProductos();
 }
 
+$(function() {
+    
+    $('#product-result').hide();//Se oculta el contenedor de productos al cargar la pagina
+    $('#buscar').click(function(e) { //Cuando se haga click en el boton de buscar, se ejecuta la funcion
+        e.preventDefault();//Se previene el comportamiento por defecto del boton
+        let search = $('#search').val();
+
+        if(search == ""){//Si el campo de busqueda esta vacio, no se hace nada
+            $('#product-result').hide();
+            return;
+        }
+
+        $.ajax({ //Este es el metodo que usa JQUERY para hacer peticiones AJAX, se definen los parametros de la peticion en un objeto, en AJAX puro es lo de usar el objeto XMLHttpRequest
+            url: 'backend/product-search.php',
+            type: 'GET',
+            data: {search: search}, //Se envia el parametro de busqueda al servidor
+            success: function(response) {
+
+                if(response == "[]"){//Si la respuesta es un JSON vacio, no se muestra nada
+                    $('#product-result').hide();
+                    return;
+                }
+                let productos = JSON.parse(response);//Se convierte la respuesta a un objeto JSON, ya que la respuesta es un string
+                let template = '';//Se crea una variable para guardar el HTML que se va a generar
+                productos.forEach(producto => {//Se recorre el JSON de productos obtenido de la busqueda, eso para poder trabajar con cada uno de los productos retornados
+                    template += `<li>
+                        ${producto.nombre}
+                    </li>`;//Se genera el HTML de cada producto
+                });
+                $('#product-result').show();//Se muestra el contenedor de productos
+                $('#container').html(template);//Se inserta el HTML generado en el contenedor de productos
+            },
+        });
+    });
+    
+});
+
+function listarProductos() {
+
+}
+
 function nombre(nom){
 
     if(nom.length > 100 || nom.length==0){

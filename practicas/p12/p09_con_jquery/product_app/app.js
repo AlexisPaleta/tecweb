@@ -29,6 +29,7 @@ $(function() {
 
         if(search == ""){//Si el campo de busqueda esta vacio, no se hace nada
             $('#product-result').hide();
+            listarProductos();
             return;
         }
 
@@ -49,10 +50,34 @@ $(function() {
                         ${producto.nombre}
                     </li>`;//Se genera el HTML de cada producto
                 });
+
+                
+                
+
                 $('#product-result').show();//Se muestra el contenedor de productos
                 $('#container').html(template);//Se inserta el HTML generado en el contenedor de productos
+
+                template = ''; //Se limpia el template para poder generar el HTML de los productos en la tabla
+                productos.forEach(producto => {
+                    template += `<tr>
+                        <td>${producto.id}</td>
+                        <td>${producto.nombre}</td>
+                        <td>
+                            <ul>
+                                <li>Precio: ${producto.precio}</li>
+                                <li>Unidades: ${producto.unidades}</li>
+                                <li>Modelo: ${producto.modelo}</li>
+                                <li>Marca: ${producto.marca}</li>
+                                <li>Detalles: ${producto.detalles}</li>
+                            </ul>
+                        </td>
+                    </tr>`;
+                });
+                $('#products').html(template);//Se inserta el HTML generado en la tabla de productos
+
             },
         });
+        
     });
 
     // SE AGREGA UN PRODUCTO
@@ -77,23 +102,40 @@ $(function() {
         $.post('backend/product-add.php', finalJSON, function(response) {//Se hace una peticion POST al servidor con el JSON del producto a agregar
             console.log(response);//Se imprime la respuesta del servidor en la consola
         });
-        
+        listarProductos();
     });
 
     //Esta funcion se ejecuta apenas carga la pagina, se hace una peticion GET al servidor para obtener la lista de productos
+    listarProductos(); //Se listan los productos nuevamente, para que se muestren en la tabla incluso si se agrega un producto
+    
+});
+
+function listarProductos() {
     $.ajax({
         url: 'backend/product-list.php',
         type: 'GET',
         success: function(response) {
             let productos = JSON.parse(response);
             console.log(productos);
+            let template = '';
+            productos.forEach(producto => {
+                template += `<tr>
+                    <td>${producto.id}</td>
+                    <td>${producto.nombre}</td>
+                    <td>
+                        <ul>
+                            <li>Precio: ${producto.precio}</li>
+                            <li>Unidades: ${producto.unidades}</li>
+                            <li>Modelo: ${producto.modelo}</li>
+                            <li>Marca: ${producto.marca}</li>
+                            <li>Detalles: ${producto.detalles}</li>
+                        </ul>
+                    </td>
+                </tr>`;
+            });
+            $('#products').html(template);
         }
     });
-    
-});
-
-function listarProductos() {
-
 }
 
 function nombre(nom){

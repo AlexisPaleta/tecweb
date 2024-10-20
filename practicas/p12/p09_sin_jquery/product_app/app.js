@@ -6,7 +6,7 @@ var baseJSON = {
     "marca": "NA",
     "detalles": "NA",
     "imagen": "img/default.png"
-  };
+};
 
 function init() {
     /**
@@ -91,7 +91,7 @@ function buscarProducto(e) {
     client.onreadystatechange = function () {
         // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
         if (client.readyState == 4 && client.status == 200) {
-            //console.log('[CLIENTE]\n'+client.responseText);
+            console.log('[CLIENTE]\n'+client.responseText);
             
             // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
             let productos = JSON.parse(client.responseText);    // similar a eval('('+client.responseText+')');
@@ -156,12 +156,12 @@ function agregarProducto(e) {
     // SE OBTIENE EL STRING DEL JSON FINAL
     productoJsonString = JSON.stringify(finalJSON,null,2);
 
-/**
- * AQUÍ DEBES AGREGAR LAS VALIDACIONES DE LOS DATOS EN EL JSON
- * ...
- * 
- * --> EN CASO DE NO HABER ERRORES, SE ENVIAR EL PRODUCTO A AGREGAR
- */
+    //Validaciones de los datos de los productos a ingresar, en caso de que alguno no sea correcto se muestra
+    //un mensaje de alerta y se detiene la ejecución de la función
+    if(nombre(finalJSON['nombre']) || marca(finalJSON['marca']) || modelo(finalJSON['modelo']) || precio(finalJSON['precio']) || detalles(finalJSON['detalles']) || unidades(finalJSON['unidades'])){
+        return;
+    }
+
 
     // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
     var client = getXMLHttpRequest();
@@ -194,7 +194,7 @@ function agregarProducto(e) {
 
 // FUNCIÓN CALLBACK DE BOTÓN "Eliminar"
 function eliminarProducto() {
-    if( confirm("De verdad deseas eliinar el Producto") ) {
+    if( confirm("De verdad deseas eliminar el Producto") ) {
         var id = event.target.parentElement.parentElement.getAttribute("productId");
         //NOTA: OTRA FORMA PODRÍA SER USANDO EL NOMBRE DE LA CLASE, COMO EN LA PRÁCTICA 7
 
@@ -252,4 +252,70 @@ function getXMLHttpRequest() {
         }
     }
     return objetoAjax;
+}
+
+function nombre(nom){
+
+    if(nom.length > 100 || nom.length==0){
+
+        alert("El nombre debe tener de 1 a 100 caracteres")
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function marca(mar){
+    let marcas = {
+        "Cheetos":1,
+        "Sabritas":2,
+        "Takis":3,
+        "Chips":4,
+        "Doritos":5,
+        "Ruffles":6
+    };
+    if(marcas[mar] == undefined){
+        alert("La marca debe ser valida");
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function modelo(model){
+    let regex = /^[a-zA-Z0-9]{1,25}$/; // Expresión regular
+    if(model.length > 25 || regex.test(model) == false){
+        alert("El modelo debe de ser de menos de 25 caracteres y tener caracteres validos");
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function precio(precio){
+    if(Number(precio) < 99.99){
+        alert("El precio debe ser mayor a 99.99");
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function detalles(detalles){
+    if(detalles!= ""){
+        if(detalles.length > 255){
+            alert("Los detalles tienen un maximo de 255 caracteres");
+            return true;
+        }
+    }
+    return false;
+}
+
+function unidades(unidades){
+    if(Number(unidades) < 0){
+        alert("El numero de unidades del producto debe ser igual o mayor a cero");
+        return true;
+    }else{
+        return false;
+    }
 }

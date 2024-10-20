@@ -21,6 +21,8 @@ function init() {
 }
 
 $(function() {
+    //Esta funcion se ejecuta apenas carga la pagina, se hace una peticion GET al servidor para obtener la lista de productos
+    listarProductos(); //Se listan los productos nuevamente, para que se muestren en la tabla incluso si se agrega un producto
     
     $('#product-result').hide();//Se oculta el contenedor de productos al cargar la pagina
     $('#buscar').click(function(e) { //Cuando se haga click en el boton de buscar, se ejecuta la funcion
@@ -103,10 +105,12 @@ $(function() {
             console.log(response);//Se imprime la respuesta del servidor en la consola
         });
         listarProductos();
+
     });
 
-    //Esta funcion se ejecuta apenas carga la pagina, se hace una peticion GET al servidor para obtener la lista de productos
-    listarProductos(); //Se listan los productos nuevamente, para que se muestren en la tabla incluso si se agrega un producto
+    $(document).on('click', '.product-delete', function() { //Se agrega un evento de click a los botones de eliminar
+        console.log('clicked');
+    });
     
 });
 
@@ -130,6 +134,11 @@ function listarProductos() {
                             <li>Marca: ${producto.marca}</li>
                             <li>Detalles: ${producto.detalles}</li>
                         </ul>
+                    </td>
+                    <td>
+                        <button class="product-delete btn btn-danger">
+                            Delete
+                        </button>
                     </td>
                 </tr>`;
             });

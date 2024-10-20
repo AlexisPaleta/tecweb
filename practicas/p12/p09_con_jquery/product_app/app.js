@@ -61,19 +61,25 @@ $(function() {
 
                 template = ''; //Se limpia el template para poder generar el HTML de los productos en la tabla
                 productos.forEach(producto => {
-                    template += `<tr>
-                        <td>${producto.id}</td>
-                        <td>${producto.nombre}</td>
-                        <td>
-                            <ul>
-                                <li>Precio: ${producto.precio}</li>
-                                <li>Unidades: ${producto.unidades}</li>
-                                <li>Modelo: ${producto.modelo}</li>
-                                <li>Marca: ${producto.marca}</li>
-                                <li>Detalles: ${producto.detalles}</li>
-                            </ul>
-                        </td>
+                    template += `<tr product-id = ${producto.id}>
+                            <td>${producto.id}</td>
+                            <td>${producto.nombre}</td>
+                            <td>
+                                <ul>
+                                    <li>Precio: ${producto.precio}</li>
+                                    <li>Unidades: ${producto.unidades}</li>
+                                    <li>Modelo: ${producto.modelo}</li>
+                                    <li>Marca: ${producto.marca}</li>
+                                    <li>Detalles: ${producto.detalles}</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <button class="product-delete btn btn-danger">
+                                    Delete
+                                </button>
+                            </td>
                     </tr>`;
+            
                 });
                 $('#products').html(template);//Se inserta el HTML generado en la tabla de productos
 
@@ -109,7 +115,16 @@ $(function() {
     });
 
     $(document).on('click', '.product-delete', function() { //Se agrega un evento de click a los botones de eliminar
-        console.log('clicked');
+        let element = $(this)[0];//Se obtiene el boton que se hizo click, el this hace referencia al boton que se hizo click y el [0] es para obtener el elemento del arreglo de elementos que devuelve JQUERY,
+        //en este caso como solo se selecciona un elemento, se obtiene el primer elemento del arreglo que es el indice 0
+        let columnaTD = element.parentElement;//Se obtiene el padre del boton, que es la columna de la tabla, esta seleccion la hago solo para que me pueda ir ubicando en el DOM, ahora
+        //que estoy en la columna, puedo ir subiendo en el DOM, para obtener la fila de la tabla que es la que tiene guardada la información del producto, en este caso el ID del producto
+        let filaTR = columnaTD.parentElement;//Se obtiene la fila de la tabla, que es el padre de la columna, ahora que estoy ubicado aqui, puedo obtener el ID del producto
+
+        let productoID = $(filaTR).attr('product-id');//Se obtiene el ID del producto, el .attr() es un metodo de JQUERY que permite obtener el valor de un atributo de un elemento HTML
+        //como al momento de usar mi metodo de listar productos, guarde el ID del producto en el atributo product-id de la fila de la tabla, puedo obtenerlo de esta manera
+        console.log(productoID);//Se imprime el ID del producto en la consola
+        
     });
     
 });
@@ -122,8 +137,8 @@ function listarProductos() {
             let productos = JSON.parse(response);
             console.log(productos);
             let template = '';
-            productos.forEach(producto => {
-                template += `<tr>
+            productos.forEach(producto => {//guardo dentro del td el id del producto, para poder eliminarlo despues, la clase es para poder seleccionar el td con JQUERY despues
+                template += `<tr product-id = ${producto.id}>
                     <td>${producto.id}</td>
                     <td>${producto.nombre}</td>
                     <td>

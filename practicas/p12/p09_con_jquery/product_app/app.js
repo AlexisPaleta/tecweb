@@ -64,7 +64,9 @@ $(function() {
                 productos.forEach(producto => {
                     template += `<tr product-id = ${producto.id}>
                             <td>${producto.id}</td>
-                            <td>${producto.nombre}</td>
+                            <td>
+                                <a href="#" class="producto-item">${producto.nombre}</a>
+                            </td>
                             <td>
                                 <ul>
                                     <li>Precio: ${producto.precio}</li>
@@ -115,6 +117,7 @@ $(function() {
 
     });
 
+    //Funcionamiento del boton para eliminar el producto seleccionado
     $(document).on('click', '.product-delete', function() { //Se agrega un evento de click a los botones de eliminar
         let element = $(this)[0];//Se obtiene el boton que se hizo click, el this hace referencia al boton que se hizo click y el [0] es para obtener el elemento del arreglo de elementos que devuelve JQUERY,
         //en este caso como solo se selecciona un elemento, se obtiene el primer elemento del arreglo que es el indice 0
@@ -131,6 +134,23 @@ $(function() {
         });
         listarProductos();//Se listan los productos nuevamente, para que se muestren en la tabla, tomando en cuenta ahora al producto eliminado, entonces ese producto ya no se muestra
     });
+
+    //Funcionamiento para editar un producto
+    $(document).on('click', '.producto-item', function() {//Se agrega un evento de click a los elementos de la clase producto-item, que son los nombres de los productos en la tabla
+        let element = $(this)[0].parentElement.parentElement;//Se obtiene el elemento que se hizo click
+        let id = $(element).attr('product-id');//Se obtiene el ID del producto
+        $.post('backend/product-single.php', {id: id}, function(response) {//Se hace una peticion POST al servidor para obtener la informacion del producto seleccionado
+            const producto = JSON.parse(response);//Se convierte la respuesta a un objeto JSON
+            
+            console.log(producto);
+
+            
+
+            //$('#name').val(producto.nombre);//Se inserta el nombre del producto en el campo de nombre del formulario
+            //$('#description').val(JSON.stringify(modificarProducto));//Se inserta el JSON del producto en el campo de descripcion del formulario
+
+        });
+    });
     
 });
 
@@ -144,23 +164,25 @@ function listarProductos() {
             let template = '';
             productos.forEach(producto => {//guardo dentro del td el id del producto, para poder eliminarlo despues, la clase es para poder seleccionar el td con JQUERY despues
                 template += `<tr product-id = ${producto.id}>
-                    <td>${producto.id}</td>
-                    <td>${producto.nombre}</td>
-                    <td>
-                        <ul>
-                            <li>Precio: ${producto.precio}</li>
-                            <li>Unidades: ${producto.unidades}</li>
-                            <li>Modelo: ${producto.modelo}</li>
-                            <li>Marca: ${producto.marca}</li>
-                            <li>Detalles: ${producto.detalles}</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <button class="product-delete btn btn-danger">
-                            Delete
-                        </button>
-                    </td>
-                </tr>`;
+                            <td>${producto.id}</td>
+                            <td>
+                                <a href="#" class="producto-item">${producto.nombre}</a>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>Precio: ${producto.precio}</li>
+                                    <li>Unidades: ${producto.unidades}</li>
+                                    <li>Modelo: ${producto.modelo}</li>
+                                    <li>Marca: ${producto.marca}</li>
+                                    <li>Detalles: ${producto.detalles}</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <button class="product-delete btn btn-danger">
+                                    Delete
+                                </button>
+                            </td>
+                    </tr>`;
             });
             $('#products').html(template);
         }

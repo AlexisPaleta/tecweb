@@ -23,7 +23,7 @@ function init() {
 $(function() {
     //Esta funcion se ejecuta apenas carga la pagina, se hace una peticion GET al servidor para obtener la lista de productos
     listarProductos(); //Se listan los productos nuevamente, para que se muestren en la tabla incluso si se agrega un producto
-    
+    let edit = false;//Se crea una variable para saber si se esta editando un producto o no, por defecto es false, ya que al cargar la pagina no se esta editando ningun producto
     $('#product-result').hide();//Se oculta el contenedor de productos al cargar la pagina
     $('#search').keyup(function(e) { //Cuando se haga click en el boton de buscar, se ejecuta la funcion
         e.preventDefault();//Se previene el comportamiento por defecto del boton
@@ -101,6 +101,7 @@ $(function() {
         let finalJSON = JSON.parse(productoJsonString);
         // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
         finalJSON['nombre'] = $('#name').val();
+        finalJSON['id'] = $('#product-id').val();
         // SE OBTIENE EL STRING DEL JSON FINAL
 
         //Validaciones de los datos de los productos a ingresar, en caso de que alguno no sea correcto se muestra
@@ -110,8 +111,21 @@ $(function() {
         }
 
         finalJSON = JSON.stringify(finalJSON);//Se convierte el JSON final a un string para poder enviarlo al servidor, ya que en el servidor se reconvierte luego a JSON
+
+        if(edit){//Si se esta editando un producto, se hace una peticion POST al servidor para editar el producto
+            $.post('backend/product-edit.php', finalJSON, function(response) {//Se hace una peticion POST al servidor con el JSON del producto a editar
+                console.log(response);//Se imprime la respuesta del servidor en la consola
+                listarProductos();listarProductos();
+            });
+            edit = false;//Se cambia la variable edit a false, para saber que ya no se esta editando un producto
+            listarProductos();//Se listan los productos nuevamente, para que se muestren en la tabla, tomando en cuenta ahora al producto editado, entonces ese producto ya no se muestra
+            return;
+        }
+
+        
         $.post('backend/product-add.php', finalJSON, function(response) {//Se hace una peticion POST al servidor con el JSON del producto a agregar
             console.log(response);//Se imprime la respuesta del servidor en la consola
+            listarProductos();listarProductos();
         });
         listarProductos();
 
@@ -119,6 +133,11 @@ $(function() {
 
     //Funcionamiento del boton para eliminar el producto seleccionado
     $(document).on('click', '.product-delete', function() { //Se agrega un evento de click a los botones de eliminar
+        
+        if( !confirm("De verdad deseas eliminar el Producto") ) {
+            return; //Si el usuario no confirma la eliminacion del producto, no se hace nada
+        }
+        
         let element = $(this)[0];//Se obtiene el boton que se hizo click, el this hace referencia al boton que se hizo click y el [0] es para obtener el elemento del arreglo de elementos que devuelve JQUERY,
         //en este caso como solo se selecciona un elemento, se obtiene el primer elemento del arreglo que es el indice 0
         let columnaTD = element.parentElement;//Se obtiene el padre del boton, que es la columna de la tabla, esta seleccion la hago solo para que me pueda ir ubicando en el DOM, ahora
@@ -131,6 +150,7 @@ $(function() {
 
         $.post('backend/product-delete.php', {id: productoID}, function(response) { //Se crea una peticion POST al servidor para eliminar el producto, se envia el ID del producto a eliminar
             console.log(response);//Se imprime la respuesta del servidor en la consola
+            listarProductos();listarProductos();
         });
         listarProductos();//Se listan los productos nuevamente, para que se muestren en la tabla, tomando en cuenta ahora al producto eliminado, entonces ese producto ya no se muestra
     });
@@ -140,15 +160,18 @@ $(function() {
         let element = $(this)[0].parentElement.parentElement;//Se obtiene el elemento que se hizo click
         let id = $(element).attr('product-id');//Se obtiene el ID del producto
         $.post('backend/product-single.php', {id: id}, function(response) {//Se hace una peticion POST al servidor para obtener la informacion del producto seleccionado
-            const producto = JSON.parse(response);//Se convierte la respuesta a un objeto JSON
+            let producto = JSON.parse(response);//Se convierte la respuesta a un objeto JSON
             
             console.log(producto);
 
+            $('#name').val(producto.nombre);//Se inserta el nombre del producto en el campo de nombre del formulario
+            delete producto.nombre;//Se elimina el nombre del producto del JSON, ya que en la descripcion del producto no se guarda el nombre, el nombre va en un campo aparte
+            let idProducto = producto.id;//Se guarda el ID del producto en una variable, para poder insertarlo en el JSON del producto
+            delete producto.id;//Se elimina el ID del producto del JSON, ya que en el JSON del producto no se guarda el ID, el ID se guarda en un campo aparte
+            $('#description').val(JSON.stringify(producto,null,2));//Se inserta el JSON del producto en el campo de descripcion del formulario
             
-
-            //$('#name').val(producto.nombre);//Se inserta el nombre del producto en el campo de nombre del formulario
-            //$('#description').val(JSON.stringify(modificarProducto));//Se inserta el JSON del producto en el campo de descripcion del formulario
-
+            $('#product-id').val(idProducto);//Se inserta el ID del producto en un campo oculto del formulario, para poder enviarlo al servidor cuando se haga la peticion de edicion  
+            edit = true;//Se cambia la variable edit a true, para saber que se esta editando un producto
         });
     });
     

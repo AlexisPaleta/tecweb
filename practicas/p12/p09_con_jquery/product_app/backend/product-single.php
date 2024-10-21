@@ -6,8 +6,9 @@
             
 
             $json = array();
-            while($row = mysqli_fetch_array($result)) {
-                $json[] = array(
+            if ($row = mysqli_fetch_array($result)) {
+                $json = array(
+                    'id' => $row['id'],
                     'nombre' => $row['nombre'],
                     'marca' => $row['marca'],
                     'precio' => $row['precio'],
@@ -16,7 +17,11 @@
                     'imagen' => $row['imagen'],
                     'modelo' => $row['modelo']
                 );
+            } else {
+                // En caso de que no se encuentre un producto con el ID dado
+                $json = null;
             }
+            
 
 
             $result->free();

@@ -125,26 +125,64 @@ $(document).ready(function(){ //El contenido de la función se ejecutará cuando
     $('#product-form').submit(e => {
         e.preventDefault();
 
-        // SE CONVIERTE EL JSON DE STRING A OBJETO
-        let postData = JSON.parse( $('#description').val() );
-        // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
-        postData['nombre'] = $('#name').val();
-        postData['id'] = $('#productId').val();
-
-        let finalJSON = postData;
-
+        // SE Declara el JSON que contiene los datos del formulario
+        let finalJSON = {
+            "id": $('#productId').val(),
+            "nombre": $('#name').val(),
+            "precio": $('#precio').val(),
+            "unidades": $('#unidades').val(),
+            "modelo": $('#modelo').val(),
+            "marca": $('#marca').val(),
+            "detalles": $('#detalles').val(),
+            "imagen": $('#imagen').val()
+        };
+    
         /**
          * AQUÍ DEBES AGREGAR LAS VALIDACIONES DE LOS DATOS EN EL JSON
          * --> EN CASO DE NO HABER ERRORES, SE ENVIAR EL PRODUCTO A AGREGAR
          **/
-
-        if(nombre(finalJSON['nombre']) || marca(finalJSON['marca']) || modelo(finalJSON['modelo']) || precio(finalJSON['precio']) || detalles(finalJSON['detalles']) || unidades(finalJSON['unidades'])){
+        if(nombre(finalJSON.nombre)){ //Se valida el nombre, si es incorrecto la funcion de nombre regresa true, 
+            //por lo que se muestra un mensaje de error y se sale del proceso de envio de datos, se cancela el submit
+            $(this).addClass('is-invalid');
             return;
         }
 
+        if(precio(finalJSON.precio)){ 
+            $(this).addClass('is-invalid');
+            return;
+        }
+
+        if(unidades(finalJSON.unidades)){
+            $(this).addClass('is-invalid');
+            return;
+        }
+
+        if(modelo(finalJSON.modelo)){
+            $(this).addClass('is-invalid');
+            return;
+        }
+
+        if(marca(finalJSON.marca)){
+            $(this).addClass('is-invalid');
+            return;
+        }
+
+        if(detalles(finalJSON.detalles)){
+            $(this).addClass('is-invalid');
+            return;
+        }
+
+        if(finalJSON.imagen == ""){ //Para el campo de la imagen, no hay una validacion como tal, pero en dado caso de que no se haya
+            //ingresado una ruta a una imagen, se asigna una imagen por defecto
+            finalJSON.imagen = "img/default.png";
+        }
+
+
+        
+
         const url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
         
-        $.post(url, postData, (response) => {
+        $.post(url, finalJSON, (response) => {
             //console.log(response);
             // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
             let respuesta = JSON.parse(response);
@@ -156,7 +194,15 @@ $(document).ready(function(){ //El contenido de la función se ejecutará cuando
                     `;
             // SE REINICIA EL FORMULARIO
             $('#name').val('');
-            $('#description').val(JsonString);
+            $('#precio').val('');
+            $('#unidades').val('');
+            $('#modelo').val('');
+            $('#marca').val('');
+            $('#detalles').val('');
+            $('#imagen').val('');
+            $('#productId').val('');
+
+
             // SE HACE VISIBLE LA BARRA DE ESTADO
             $('#product-result').show();
             // SE INSERTA LA PLANTILLA PARA LA BARRA DE ESTADO
@@ -189,27 +235,86 @@ $(document).ready(function(){ //El contenido de la función se ejecutará cuando
             $('#name').val(product.nombre);
             // EL ID SE INSERTA EN UN CAMPO OCULTO PARA USARLO DESPUÉS PARA LA ACTUALIZACIÓN
             $('#productId').val(product.id);
-            // SE ELIMINA nombre, eliminado E id PARA PODER MOSTRAR EL JSON EN EL <textarea>
-            delete(product.nombre);
-            delete(product.eliminado);
-            delete(product.id);
-            // SE CONVIERTE EL OBJETO JSON EN STRING
-            let JsonString = JSON.stringify(product,null,2);
-            // SE MUESTRA STRING EN EL <textarea>
-            $('#description').val(JsonString);
+            
+            //Se rellena el formulario con los datos del producto que se quiere editar
+            $('#precio').val(product.precio);
+            $('#unidades').val(product.unidades);
+            $('#modelo').val(product.modelo);
+            $('#marca').val(product.marca);
+            $('#detalles').val(product.detalles);
+            $('#imagen').val(product.imagen);
             
             // SE PONE LA BANDERA DE EDICIÓN EN true
             edit = true;
         });
         e.preventDefault();
     });    
+
+
+    //Se agregan ahora los event listeners para los campos del formulario, se realizan las validaciones
+    //correspondientes y se muestra un mensaje de error si es necesario.
+    $('#name').on('blur', function() { //Se agrega un event listener para el campo nombre, cada vez que se pierde el foco, o sea que
+        //se da click en otro lado cuando antes se le habia dado click a este campo, se ejecuta la función
+        let nombreInput = $(this).val();
+        if (nombre(nombreInput)) {
+            $(this).addClass('is-invalid');
+        } else {
+            $(this).removeClass('is-invalid');
+        }
+    });
+
+    $('#marca').on('blur', function() {
+        let marcaInput = $(this).val();
+        if (marca(marcaInput)) {
+            $(this).addClass('is-invalid');
+        } else {
+            $(this).removeClass('is-invalid');
+        }
+    });
+
+    $('#modelo').on('blur', function() {
+        let modeloInput = $(this).val();
+        if (modelo(modeloInput)) {
+            $(this).addClass('is-invalid');
+        } else {
+            $(this).removeClass('is-invalid');
+        }
+    });
+
+    $('#precio').on('blur', function() {
+        let precioInput = $(this).val();
+        if (precio(precioInput)) {
+            $(this).addClass('is-invalid');
+        } else {
+            $(this).removeClass('is-invalid');
+        }
+    });
+
+    $('#detalles').on('blur', function() {
+        let detallesInput = $(this).val();
+        if (detalles(detallesInput)) {
+            $(this).addClass('is-invalid');
+        } else {
+            $(this).removeClass('is-invalid');
+        }
+    });
+
+    $('#unidades').on('blur', function() {
+        let unidadesInput = $(this).val();
+        if (unidades(unidadesInput)) {
+            $(this).addClass('is-invalid');
+        } else {
+            $(this).removeClass('is-invalid');
+        }
+    });
+
 });
 
 function nombre(nom){
 
     if(nom.length > 100 || nom.length==0){
 
-        alert("El nombre debe tener de 1 a 100 caracteres")
+        console.log("Error en nombre");
         return true;
     }else{
         return false;
@@ -226,7 +331,7 @@ function marca(mar){
         "Ruffles":6
     };
     if(marcas[mar] == undefined){
-        alert("La marca debe ser valida");
+        console.log("Error en marca");
         return true;
     }else{
         return false;
@@ -236,7 +341,7 @@ function marca(mar){
 function modelo(model){
     let regex = /^[a-zA-Z0-9]{1,25}$/; // Expresión regular
     if(model.length > 25 || regex.test(model) == false){
-        alert("El modelo debe de ser de menos de 25 caracteres y tener caracteres validos");
+        console.log("Error en modelo");
         return true;
     }else{
         return false;
@@ -245,7 +350,7 @@ function modelo(model){
 
 function precio(precio){
     if(Number(precio) < 99.99){
-        alert("El precio debe ser mayor a 99.99");
+        console.log("Error en precio");
         return true;
     }else{
         return false;
@@ -255,7 +360,7 @@ function precio(precio){
 function detalles(detalles){
     if(detalles!= ""){
         if(detalles.length > 255){
-            alert("Los detalles tienen un maximo de 255 caracteres");
+            console.log("Error en detalles");
             return true;
         }
     }
@@ -264,7 +369,7 @@ function detalles(detalles){
 
 function unidades(unidades){
     if(Number(unidades) < 0){
-        alert("El numero de unidades del producto debe ser igual o mayor a cero");
+        console.log("Error en unidades");
         return true;
     }else{
         return false;

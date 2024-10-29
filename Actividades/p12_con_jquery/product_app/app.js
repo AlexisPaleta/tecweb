@@ -258,8 +258,10 @@ $(document).ready(function(){ //El contenido de la función se ejecutará cuando
         let nombreInput = $(this).val();
         if (nombre(nombreInput)) {
             $(this).addClass('is-invalid');
+            $(this).removeClass('is-valid');
         } else {
             $(this).removeClass('is-invalid');
+            $(this).addClass('is-valid');
         }
     });
 
@@ -267,8 +269,10 @@ $(document).ready(function(){ //El contenido de la función se ejecutará cuando
         let marcaInput = $(this).val();
         if (marca(marcaInput)) {
             $(this).addClass('is-invalid');
+            $(this).removeClass('is-valid');
         } else {
             $(this).removeClass('is-invalid');
+            $(this).addClass('is-valid');
         }
     });
 
@@ -276,8 +280,10 @@ $(document).ready(function(){ //El contenido de la función se ejecutará cuando
         let modeloInput = $(this).val();
         if (modelo(modeloInput)) {
             $(this).addClass('is-invalid');
+            $(this).removeClass('is-valid');
         } else {
             $(this).removeClass('is-invalid');
+            $(this).addClass('is-valid');
         }
     });
 
@@ -285,8 +291,10 @@ $(document).ready(function(){ //El contenido de la función se ejecutará cuando
         let precioInput = $(this).val();
         if (precio(precioInput)) {
             $(this).addClass('is-invalid');
+            $(this).removeClass('is-valid');
         } else {
             $(this).removeClass('is-invalid');
+            $(this).addClass('is-valid');
         }
     });
 
@@ -294,8 +302,10 @@ $(document).ready(function(){ //El contenido de la función se ejecutará cuando
         let detallesInput = $(this).val();
         if (detalles(detallesInput)) {
             $(this).addClass('is-invalid');
+            $(this).removeClass('is-valid');
         } else {
             $(this).removeClass('is-invalid');
+            $(this).addClass('is-valid');
         }
     });
 
@@ -303,8 +313,10 @@ $(document).ready(function(){ //El contenido de la función se ejecutará cuando
         let unidadesInput = $(this).val();
         if (unidades(unidadesInput)) {
             $(this).addClass('is-invalid');
+            $(this).removeClass('is-valid');
         } else {
             $(this).removeClass('is-invalid');
+            $(this).addClass('is-valid');
         }
     });
 

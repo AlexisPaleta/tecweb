@@ -31,27 +31,31 @@
             <div class="card-body">
               <!-- FORMULARIO PARA AGREGAR PRODUCTO -->
               <form id="product-form">
-                <div class="form-group has-danger">
+                <div class="form-group has-danger has-success">
                   <label for="name">Nombre del producto:</label>
                   <input class="form-control" type="text" id="name" placeholder="Nombre de producto">
                   <div class="invalid-feedback">El nombre debe tener de 1 a 100 caracteres</div>
+                  <div class="valid-feedback">Nombre válido</div>
                 </div>
-                <div class="form-group has-danger">
+                <div class="form-group has-danger has-success">
                   <label for="precio">Precio del producto:</label>
                   <input class="form-control" type="number" id="precio" placeholder="Precio de producto">
                   <div class="invalid-feedback">El precio debe ser mayor a 99.99</div>
+                  <div class="valid-feedback">Precio válido</div>
                 </div>
-                <div class="form-group has-danger">
+                <div class="form-group has-danger has-success">
                   <label for="unidades">Unidades del producto:</label>
                   <input class="form-control" type="number" id="unidades" placeholder="Unidades de producto">
                   <div class="invalid-feedback">El numero de unidades del producto debe ser igual o mayor a cero</div>
+                  <div class="valid-feedback">Unidades válidas</div>
                 </div>
-                <div class="form-group has-danger">
+                <div class="form-group has-danger has-success">
                   <label for="modelo">Modelo del producto:</label>
                   <input class="form-control" type="text" id="modelo" placeholder="Modelo de producto">
                   <div class="invalid-feedback">El modelo debe de ser de menos de 25 caracteres y tener caracteres validos</div>
+                  <div class="valid-feedback">Modelo válido</div>
                 </div>
-                <div class="form-group has-danger">
+                <div class="form-group has-danger has-success">
                   <label for="marca">Marca del producto:</label>
                   <select class="form-control" id="marca" aria-placeholder="">
                     <option value=""></option>
@@ -63,11 +67,13 @@
                     <option value="Ruffles">Ruffles</option>
                   </select>
                   <div class="invalid-feedback">La marca debe ser valida</div>
+                  <div class="valid-feedback">Marca válida</div>
                 </div>
-                <div class="form-group has-danger">
+                <div class="form-group has-danger has-success">
                   <label for="detalles">Detalles:</label>
                   <textarea class="form-control" id="detalles" rows="3"></textarea>
                   <div class="invalid-feedback">Los detalles tienen un maximo de 255 caracteres</div>
+                  <div class="valid-feedback">Detalles válidos</div>
                 </div>
                 <div class="form-group">
                   <label for="imagen">Imagen:</label>

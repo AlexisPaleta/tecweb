@@ -6,9 +6,12 @@ var baseJSON = {
     "marca": "NA",
     "detalles": "NA",
     "imagen": "img/default.png"
-  };
+};
 
-$(document).ready(function(){
+$(document).ready(function(){ //El contenido de la función se ejecutará cuando la página esté cargada,
+    //la idea de declarar muchas funciones aqui es porque con JQUERY se estan creando event listeners
+    //que se activan en el momento en que el usuario interactua con la pagina, algunos cuando
+    //se hace click en un boton, otros cuando se suelta una tecla, etc.
     let edit = false;
 
     let JsonString = JSON.stringify(baseJSON,null,2);
@@ -115,6 +118,7 @@ $(document).ready(function(){
         }
         else {
             $('#product-result').hide();
+            listarProductos();
         }
     });
 
@@ -127,10 +131,16 @@ $(document).ready(function(){
         postData['nombre'] = $('#name').val();
         postData['id'] = $('#productId').val();
 
+        let finalJSON = postData;
+
         /**
          * AQUÍ DEBES AGREGAR LAS VALIDACIONES DE LOS DATOS EN EL JSON
          * --> EN CASO DE NO HABER ERRORES, SE ENVIAR EL PRODUCTO A AGREGAR
          **/
+
+        if(nombre(finalJSON['nombre']) || marca(finalJSON['marca']) || modelo(finalJSON['modelo']) || precio(finalJSON['precio']) || detalles(finalJSON['detalles']) || unidades(finalJSON['unidades'])){
+            return;
+        }
 
         const url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
         
@@ -194,3 +204,69 @@ $(document).ready(function(){
         e.preventDefault();
     });    
 });
+
+function nombre(nom){
+
+    if(nom.length > 100 || nom.length==0){
+
+        alert("El nombre debe tener de 1 a 100 caracteres")
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function marca(mar){
+    let marcas = {
+        "Cheetos":1,
+        "Sabritas":2,
+        "Takis":3,
+        "Chips":4,
+        "Doritos":5,
+        "Ruffles":6
+    };
+    if(marcas[mar] == undefined){
+        alert("La marca debe ser valida");
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function modelo(model){
+    let regex = /^[a-zA-Z0-9]{1,25}$/; // Expresión regular
+    if(model.length > 25 || regex.test(model) == false){
+        alert("El modelo debe de ser de menos de 25 caracteres y tener caracteres validos");
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function precio(precio){
+    if(Number(precio) < 99.99){
+        alert("El precio debe ser mayor a 99.99");
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function detalles(detalles){
+    if(detalles!= ""){
+        if(detalles.length > 255){
+            alert("Los detalles tienen un maximo de 255 caracteres");
+            return true;
+        }
+    }
+    return false;
+}
+
+function unidades(unidades){
+    if(Number(unidades) < 0){
+        alert("El numero de unidades del producto debe ser igual o mayor a cero");
+        return true;
+    }else{
+        return false;
+    }
+}

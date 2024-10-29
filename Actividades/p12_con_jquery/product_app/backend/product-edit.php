@@ -18,6 +18,7 @@
             $data['status'] =  "success";
             $data['message'] =  "Producto actualizado";
 		} else {
+            $data['status'] =  "Error";
             $data['message'] = "ERROR: No se ejecuto $sql. " . mysqli_error($conexion);
         }
 		$conexion->close();

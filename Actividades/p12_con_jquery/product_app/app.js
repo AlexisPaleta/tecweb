@@ -136,39 +136,49 @@ $(document).ready(function(){ //El contenido de la función se ejecutará cuando
             "detalles": $('#detalles').val(),
             "imagen": $('#imagen').val()
         };
+
+        if(finalJSON.unidades == ""){
+            $('#unidades').val(0.0);
+            finalJSON.unidades = 0.0;
+        }
     
         /**
          * AQUÍ DEBES AGREGAR LAS VALIDACIONES DE LOS DATOS EN EL JSON
          * --> EN CASO DE NO HABER ERRORES, SE ENVIAR EL PRODUCTO A AGREGAR
          **/
+        let noValido = false;
         if(nombre(finalJSON.nombre)){ //Se valida el nombre, si es incorrecto la funcion de nombre regresa true, 
             //por lo que se muestra un mensaje de error y se sale del proceso de envio de datos, se cancela el submit
-            $(this).addClass('is-invalid');
-            return;
+            $('#name').addClass('is-invalid');
+            noValido = true;
         }
 
         if(precio(finalJSON.precio)){ 
-            $(this).addClass('is-invalid');
-            return;
+            $('#precio').addClass('is-invalid');
+            noValido = true;
         }
 
         if(unidades(finalJSON.unidades)){
-            $(this).addClass('is-invalid');
-            return;
+            $('#unidades').addClass('is-invalid');
+            noValido = true;
         }
 
         if(modelo(finalJSON.modelo)){
-            $(this).addClass('is-invalid');
-            return;
+            $('#modelo').addClass('is-invalid');
+            noValido = true;
         }
 
         if(marca(finalJSON.marca)){
-            $(this).addClass('is-invalid');
-            return;
+            $('#marca').addClass('is-invalid');
+            noValido = true;
         }
 
         if(detalles(finalJSON.detalles)){
-            $(this).addClass('is-invalid');
+            $('#detalles').addClass('is-invalid');
+            noValido = true;
+        }
+
+        if(noValido){ //Si noValido es true, se cancela el submit
             return;
         }
 

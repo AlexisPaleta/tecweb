@@ -47,7 +47,7 @@ $(document).ready(function(){ //El contenido de la función se ejecutará cuando
                                 <td><a href="#" class="product-item">${producto.nombre}</a></td>
                                 <td><ul>${descripcion}</ul></td>
                                 <td>
-                                    <button class="product-delete btn btn-danger" onclick="eliminarProducto()">
+                                    <button class="product-delete btn btn-danger"">
                                         Eliminar
                                     </button>
                                 </td>

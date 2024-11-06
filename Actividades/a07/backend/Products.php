@@ -178,6 +178,35 @@
             $this->data = json_encode($data, JSON_PRETTY_PRINT);
         }
 
+        public function singleSearch($JSON){
+            // SE CREA EL ARREGLO QUE SE VA A DEVOLVER EN FORMA DE JSON
+            $data = array(
+                'status'  => 'error',
+                'message' => 'La consulta falló'
+            );
+
+            $jsonOBJ = json_decode( json_encode($JSON) );
+
+                // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
+                $sql = "SELECT * FROM productos WHERE nombre = '{$jsonOBJ->nombre}' AND eliminado = 0";
+                $result = $this->conexion->query($sql);
+                
+                if ($result->num_rows != 0) {
+                    // SE CODIFICAN A UTF-8 LOS DATOS Y SE MAPEAN AL ARREGLO DE RESPUESTA
+                    $data['status'] =  "error";
+                    $data['message'] =  "Producto ya registrado con ese nombre";
+                }else{
+                    $data['status'] =  "success";
+                    $data['message'] =  "Nombre de producto disponible";
+                }
+                $result->free();
+            
+            $this->conexion->close();
+
+            // SE HACE LA CONVERSIÓN DE ARRAY A JSON
+            $this->data = json_encode($data, JSON_PRETTY_PRINT);
+        }
+
         public function getData(){
             return $this->data;
         }

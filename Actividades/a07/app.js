@@ -266,13 +266,34 @@ $(document).ready(function(){ //El contenido de la función se ejecutará cuando
     $('#name').on('blur', function() { //Se agrega un event listener para el campo nombre, cada vez que se pierde el foco, o sea que
         //se da click en otro lado cuando antes se le habia dado click a este campo, se ejecuta la función
         let nombreInput = $(this).val();
+        let noValido = false;
         if (nombre(nombreInput)) {
-            $(this).addClass('is-invalid');
-            $(this).removeClass('is-valid');
-        } else {
-            $(this).removeClass('is-invalid');
-            $(this).addClass('is-valid');
+            noValido = true;
         }
+
+        let producto = {
+            "nombre":$(this).val()
+        };
+
+        $.post('./backend/product-singleSearch.php', producto, (response) => {
+            console.log(response);
+            let respuesta = JSON.parse(response);
+            console.log(respuesta);
+            if(respuesta.status == "error"){
+                console.log("Error: Nombre del producto ya existe");
+                noValido = true;
+                console.log("No valido 1: "+noValido);
+            }
+
+            if(noValido){
+                $(this).addClass('is-invalid');
+                $(this).removeClass('is-valid');
+            }else{
+                $(this).removeClass('is-invalid');
+                $(this).addClass('is-valid');
+            }
+        })
+        
     });
 
     $('#marca').on('blur', function() {
@@ -333,14 +354,34 @@ $(document).ready(function(){ //El contenido de la función se ejecutará cuando
 });
 
 function nombre(nom){
-
+    let noValido = false;
     if(nom.length > 100 || nom.length==0){
 
         console.log("Error en nombre");
-        return true;
-    }else{
-        return false;
+        noValido = true;
     }
+
+    let producto = {
+        "nombre":$('#name').val()
+    };
+
+    $.post('./backend/product-singleSearch.php', producto, (response) => {
+        let respuesta = JSON.parse(response);
+        if(respuesta.status == "error"){
+            console.log("Error: Nombre del producto ya existe");
+            noValido = true;
+        }
+
+        if(noValido){
+            $(this).addClass('is-invalid');
+            $(this).removeClass('is-valid');
+        }else{
+            $(this).removeClass('is-invalid');
+            $(this).addClass('is-valid');
+        }
+    })
+
+    return noValido;
 }
 
 function marca(mar){

@@ -1,15 +1,21 @@
 <?php
-    $conexion = @mysqli_connect(
-        'localhost',
-        'root',
-        'cursodbAPO11?',
-        'marketzone'
-    );
+    namespace Actividades\backend;
+    abstract class Database { // Clase abstracta para la conexión a la base de datos
+        protected $conexion;
 
-    /**
-     * NOTA: si la conexión falló $conexion contendrá false
-     **/
-    if(!$conexion) {
-        die('¡Base de datos NO conextada!');
+        // Constructor de la clase, recibe como parametros los datos de la conexión
+        public function __construct($usuario, $contrasena, $baseDatos) {
+            // Es impórtante la forma en la que creo la conexion, ya que trate de hacerlo antes
+            // con new mysqli() y no funcionaba, por lo que opte por hacerlo de esta forma
+            $this->conexion = @mysqli_connect(
+                'localhost',
+                $usuario,
+                $contrasena,
+                $baseDatos
+            );
+            if ($this->conexion->connect_error) {
+                die("Error de conexión: " . $this->conexion->connect_error);
+            }
+        }
     }
 ?>

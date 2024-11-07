@@ -147,7 +147,7 @@ $(document).ready(function(){ //El contenido de la función se ejecutará cuando
          * --> EN CASO DE NO HABER ERRORES, SE ENVIAR EL PRODUCTO A AGREGAR
          **/
         let noValido = false;
-        if(nombre(finalJSON.nombre)){ //Se valida el nombre, si es incorrecto la funcion de nombre regresa true, 
+        if(nombre(finalJSON.nombre, edit)){ //Se valida el nombre, si es incorrecto la funcion de nombre regresa true, 
             //por lo que se muestra un mensaje de error y se sale del proceso de envio de datos, se cancela el submit
             $('#name').addClass('is-invalid');
             noValido = true;
@@ -274,11 +274,15 @@ $(document).ready(function(){ //El contenido de la función se ejecutará cuando
         let producto = {
             "nombre":$(this).val()
         };
+        if(edit){
+            return noValido;
+        }
 
         $.post('./backend/product-singleSearch.php', producto, (response) => {
             console.log(response);
             let respuesta = JSON.parse(response);
             console.log(respuesta);
+            
             if(respuesta.status == "error"){
                 console.log("Error: Nombre del producto ya existe");
                 noValido = true;
@@ -353,7 +357,7 @@ $(document).ready(function(){ //El contenido de la función se ejecutará cuando
 
 });
 
-function nombre(nom){
+function nombre(nom,edit){
     let noValido = false;
     if(nom.length > 100 || nom.length==0){
 
@@ -364,10 +368,13 @@ function nombre(nom){
     let producto = {
         "nombre":$('#name').val()
     };
-
+    if(edit){
+        return noValido;
+    }
     $.post('./backend/product-singleSearch.php', producto, (response) => {
         let respuesta = JSON.parse(response);
-        if(respuesta.status == "error"){
+
+        if(respuesta.status == "error" && edit == false){
             console.log("Error: Nombre del producto ya existe");
             noValido = true;
         }

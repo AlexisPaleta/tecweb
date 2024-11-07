@@ -231,6 +231,9 @@ $(document).ready(function(){ //El contenido de la función se ejecutará cuando
             $.post('./backend/product-delete.php', {id}, (response) => {
                 $('#product-result').hide();
                 listarProductos();
+
+                let respuesta = JSON.parse(response);
+                console.log(respuesta.message);
             });
         }
     });

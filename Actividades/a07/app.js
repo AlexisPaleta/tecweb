@@ -269,37 +269,11 @@ $(document).ready(function(){ //El contenido de la función se ejecutará cuando
     $('#name').on('blur', function() { //Se agrega un event listener para el campo nombre, cada vez que se pierde el foco, o sea que
         //se da click en otro lado cuando antes se le habia dado click a este campo, se ejecuta la función
         let nombreInput = $(this).val();
-        let noValido = false;
-        if (nombre(nombreInput)) {
-            noValido = true;
-        }
 
-        let producto = {
-            "nombre":$(this).val()
-        };
-        if(edit){
-            return noValido;
-        }
+        nombre(nombreInput, edit);
 
-        $.post('./backend/product-singleSearch.php', producto, (response) => {
-            console.log(response);
-            let respuesta = JSON.parse(response);
-            console.log(respuesta);
-            
-            if(respuesta.status == "error"){
-                console.log("Error: Nombre del producto ya existe");
-                noValido = true;
-                console.log("No valido 1: "+noValido);
-            }
 
-            if(noValido){
-                $(this).addClass('is-invalid');
-                $(this).removeClass('is-valid');
-            }else{
-                $(this).removeClass('is-invalid');
-                $(this).addClass('is-valid');
-            }
-        })
+        
         
     });
 
@@ -362,16 +336,26 @@ $(document).ready(function(){ //El contenido de la función se ejecutará cuando
 
 function nombre(nom,edit){
     let noValido = false;
+    let errorLongitud = false;
     if(nom.length > 100 || nom.length==0){
 
-        console.log("Error en nombre");
+        console.log("Error en la longitud nombre");
+        $('#ErrorNombre').text("Nombre no valido, debe tener entre 1 y 100 caracteres");
         noValido = true;
+        errorLongitud = true;
     }
 
     let producto = {
         "nombre":$('#name').val()
     };
     if(edit){
+        if(noValido){
+            $('#name').addClass('is-invalid');
+            $('#name').removeClass('is-valid');
+        }else{
+            $('#name').removeClass('is-invalid');
+            $('#name').addClass('is-valid');
+        }
         return noValido;
     }
     $.post('./backend/product-singleSearch.php', producto, (response) => {
@@ -379,15 +363,18 @@ function nombre(nom,edit){
 
         if(respuesta.status == "error" && edit == false){
             console.log("Error: Nombre del producto ya existe");
+
+                $('#ErrorNombre').text("Nombre del producto ya existe");
+            
             noValido = true;
         }
 
         if(noValido){
-            $(this).addClass('is-invalid');
-            $(this).removeClass('is-valid');
+            $('#name').addClass('is-invalid');
+            $('#name').removeClass('is-valid');
         }else{
-            $(this).removeClass('is-invalid');
-            $(this).addClass('is-valid');
+            $('#name').removeClass('is-invalid');
+            $('#name').addClass('is-valid');
         }
     })
 

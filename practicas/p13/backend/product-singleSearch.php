@@ -1,7 +1,7 @@
 <?php
     
-    require_once __DIR__ . '/Read.php';
-    use Actividades\backend\Read as Read;
+    require_once '../vendor/autoload.php';
+    use myapi\Read as Read;
 
     $products = new Read("root", "cursodbAPO11?", "marketzone");
 

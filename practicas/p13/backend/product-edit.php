@@ -27,8 +27,8 @@
     // // SE HACE LA CONVERSIÓN DE ARRAY A JSON
     // echo json_encode($data, JSON_PRETTY_PRINT);
 
+    require_once '../vendor/autoload.php';
     use myapi\Update as Update;
-    require_once __DIR__ . '/myapi/Update.php';
 
     $products = new Update("root", "cursodbAPO11?", "marketzone");
 

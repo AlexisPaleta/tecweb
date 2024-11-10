@@ -26,10 +26,10 @@
     // // SE HACE LA CONVERSIÓN DE ARRAY A JSON
     // echo json_encode($data, JSON_PRETTY_PRINT);
     
-    use myapi\Read as Read;
-    require_once __DIR__ . '/myapi/Read.php';
     
-
+    require_once '../vendor/autoload.php';
+    use myapi\Read as Read;
+    
     $products = new Read("root", "cursodbAPO11?", "marketzone");
 
     $products->list();

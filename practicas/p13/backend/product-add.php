@@ -38,8 +38,8 @@
 
     // // SE HACE LA CONVERSIÓN DE ARRAY A JSON
     // echo json_encode($data, JSON_PRETTY_PRINT);
+    require_once '../vendor/autoload.php';
     use myapi\Create as Create;
-    require_once __DIR__ . '/myapi/Create.php';
     
 
     $products = new Create("root", "cursodbAPO11?", "marketzone");

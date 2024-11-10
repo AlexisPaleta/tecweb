@@ -23,10 +23,10 @@
     // // SE HACE LA CONVERSIÓN DE ARRAY A JSON
     // echo json_encode($data, JSON_PRETTY_PRINT);
 
-    use myapi\Products as Products;
-    require_once __DIR__ . '/myapi/Products.php';
+    use myapi\Delete as Delete;
+    require_once __DIR__ . '/myapi/Delete.php';
 
-    $products = new Products("root", "cursodbAPO11?", "marketzone");
+    $products = new Delete("root", "cursodbAPO11?", "marketzone");
 
     if(isset($_POST['id'])) {
         $products->delete($_POST['id']);

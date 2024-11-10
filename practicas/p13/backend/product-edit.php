@@ -27,10 +27,10 @@
     // // SE HACE LA CONVERSIÓN DE ARRAY A JSON
     // echo json_encode($data, JSON_PRETTY_PRINT);
 
-    use myapi\Products as Products;
-    require_once __DIR__ . '/myapi/Products.php';
+    use myapi\Update as Update;
+    require_once __DIR__ . '/myapi/Update.php';
 
-    $products = new Products("root", "cursodbAPO11?", "marketzone");
+    $products = new Update("root", "cursodbAPO11?", "marketzone");
 
     if(isset($_POST['id'])) {
         $products->edit($_POST);

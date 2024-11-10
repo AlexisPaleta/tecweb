@@ -38,11 +38,11 @@
 
     // // SE HACE LA CONVERSIÓN DE ARRAY A JSON
     // echo json_encode($data, JSON_PRETTY_PRINT);
-    use myapi\Products as Products;
-    require_once __DIR__ . '/myapi/Products.php';
+    use myapi\Create as Create;
+    require_once __DIR__ . '/myapi/Create.php';
     
 
-    $products = new Products("root", "cursodbAPO11?", "marketzone");
+    $products = new Create("root", "cursodbAPO11?", "marketzone");
 
     if(isset($_POST['nombre'])) {
         $products->add($_POST);

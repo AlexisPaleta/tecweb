@@ -1,9 +1,9 @@
 <?php
     
-    require_once __DIR__ . '/Products.php';
-    use Actividades\backend\Products as Products;
+    require_once __DIR__ . '/Read.php';
+    use Actividades\backend\Read as Read;
 
-    $products = new Products("root", "cursodbAPO11?", "marketzone");
+    $products = new Read("root", "cursodbAPO11?", "marketzone");
 
     if(isset($_POST['nombre'])) {
         $products->singleSearch($_POST);

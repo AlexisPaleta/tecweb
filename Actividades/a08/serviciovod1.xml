@@ -1,0 +1,97 @@
+<CatalogoVOD>
+    <cuenta>
+        <correo>alexis@correo.com</correo>
+        <perfiles>
+            <perfil>
+                <usuario>AlexisPaleta</usuario>
+                <idioma>es</idioma>
+            </perfil>
+            <perfil>
+                <usuario>AlvinYakitori</usuario>
+                <idioma>jp</idioma>
+            </perfil>
+        </perfiles>
+    </cuenta>
+    <contenido>
+        <peliculas>
+            <genero>
+                <nombre>Accion</nombre>
+                <titulo>
+                    <nombre>Busqueda Implacable</nombre>
+                    <duracion>02:10:18</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>300</nombre>
+                    <duracion>02:29:58</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Matrix</nombre>
+                    <duracion>02:19:58</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Terminator 2</nombre>
+                    <duracion>02:33:41</duracion>
+                </titulo>
+            </genero>
+            <genero>
+                <nombre>Terror</nombre>
+                <titulo>
+                    <nombre>It</nombre>
+                    <duracion>01:58:21</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>El resplandor</nombre>
+                    <duracion>02:26:13</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>El conjuro</nombre>
+                    <duracion>03:31:59</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>El exorcista</nombre>
+                    <duracion>02:02:02</duracion>
+                </titulo>
+            </genero>
+        </peliculas>
+        <programas>
+            <genero>
+                <nombre>Comedia</nombre>
+                <titulo>
+                    <nombre>Drake y Josh</nombre>
+                    <duracion>00:21:53</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Friends</nombre>
+                    <duracion>00:23:51</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>iCarly</nombre>
+                    <duracion>00:22:34</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>How I Met Your Mother</nombre>
+                    <duracion>00:23:38</duracion>
+                </titulo>
+            </genero>
+            <genero>
+                <nombre>Misterio</nombre>
+                <titulo>
+                    <nombre>Monster</nombre>
+                    <duracion>00:24:32</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Death Note</nombre>
+                    <duracion>00:24:45</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Steins;Gate</nombre>
+                    <duracion>00:23:12</duracion>
+                </titulo>
+                <titulo>
+                    <nombre>Erased</nombre>
+                    <duracion>00:25:53</duracion>
+                </titulo>
+            </genero>
+        </programas>
+    </contenido>
+</CatalogoVOD>

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!ELEMENT cinefanatico (tarjeta+) >
-<!ELEMENT tarjeta (nombre, correo, (telefono, telefono?)?)>
+<!ELEMENT tarjeta (nombre, correo, (telefono, telefono?)?)> 
 <!ELEMENT nombre (#PCDATA)>
 <!ELEMENT correo (#PCDATA)>
 <!ELEMENT telefono (#PCDATA)>
-<!ATTLIST tarjeta noseria CDATA #REQUIRED visitas CDATA #REQUIRED puntos CDATA #REQUIRED>
+<!ATTLIST tarjeta noserie CDATA #REQUIRED visitas CDATA #REQUIRED puntos CDATA #REQUIRED>
 <!ATTLIST telefono tipo (movil|casa) #REQUIRED>
+<!-- Una tarjeta debe contener de manera obligatoria los atributos establecidos, un solo nombre,
+un solo correo, y luego puede o tener un solo telefono, dos telefonos o ningun telefono, solo
+entre esas opciones-->

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    
+    <xs:element name="Spotify" type="spotifyType"/>
+    <xs:element name="Cuenta" type="cuentaType"/>
+    <xs:element name="Nombre" type="xs:string"/>
+    <xs:element name="Correo" type="xs:string"/>
+    <xs:element name="Telefono" type="elementoTelefonoType"/>
+    
+    <xs:complexType name="spotifyType" mixed="false">
+        <xs:sequence>
+            <xs:element ref="Cuenta" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="cuentaType" mixed="false">
+        <xs:sequence>
+            <xs:element ref="Nombre"/>
+            <xs:element ref="Correo"/>
+            <xs:element ref="Telefono" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:integer" use="required"/>
+        <xs:attribute name="plan" type="membresiaType" use="required"/>
+        <xs:attribute name="fechaIni" type="xs:date" use="optional"/>
+        <xs:attribute name="fechaFin" type="xs:date" use="optional"/> 
+    </xs:complexType>
+        
+    <xs:complexType name="elementoTelefonoType"> 
+        <xs:simpleContent> <!-- Esto sirve para indicar que el elemento solo contiene texto y atributos, no elementos -->
+            <xs:extension base="xs:string"> <!-- La extension es necesaria para que se pueda colocar texto dentro del elemento
+             Telefono, las extensiones se deben encerrar en simple o complex content, con esta extension le estoy
+             diciendo a Telefono que tenga las propiedades de ser de tipo String, o sea que contenga cadenas, pero que 
+             voy a agregarle un atributo, sin esto Telefono solo podria tener el atributo pero no contendria texto dentro de el-->
+                <xs:attribute name="tipo" use="required" type="telefonoType"/>   
+            </xs:extension>
+        </xs:simpleContent> 
+    </xs:complexType>
+    
+    <xs:simpleType name="telefonoType"> 
+        <xs:restriction base="xs:string"> <!-- Contiene cadenas que solo pueden tomar dos valores -->
+            <xs:enumeration value="movil"/>
+            <xs:enumeration value="casa"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="membresiaType"> 
+        <xs:restriction base="xs:string"> <!-- Contiene cadenas que solo pueden tomar cuatro valores -->
+            <xs:enumeration value="premium"/>
+            <xs:enumeration value="estudiante"/>
+            <xs:enumeration value="familar"/>
+            <xs:enumeration value="no premium"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

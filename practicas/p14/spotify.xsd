@@ -15,8 +15,8 @@
                                         <xs:extension base="xs:string"> <!-- La extension es necesaria para que se pueda colocar texto dentro del elemento
                                         Telefono, las extensiones se deben encerrar en simple o complex content, con esta extension le estoy
                                         diciendo a Telefono que tenga las propiedades de ser de tipo String, o sea que contenga cadenas, pero que 
-                                        voy a agregarle un aributo, sin esto Telefono solo podria tener el atributo pero no contendria texto dentro de el-->
-                                            <xs:attribute name="tipo" use="required" type="telefonoType"/>      
+                                        voy a agregarle un atributo, sin esto Telefono solo podria tener el atributo pero no contendria texto dentro de el-->
+                                            <xs:attribute name="tipo" use="required" type="telefonoType"/>   
                                         </xs:extension>
                                     </xs:simpleContent>    
                                 </xs:complexType>
@@ -41,7 +41,7 @@
     </xs:simpleType>
     
     <xs:simpleType name="membresiaType"> 
-        <xs:restriction base="xs:string"> <!-- Contiene cadenas que solo pueden tomar dos valores -->
+        <xs:restriction base="xs:string"> <!-- Contiene cadenas que solo pueden tomar cuatro valores -->
             <xs:enumeration value="premium"/>
             <xs:enumeration value="estudiante"/>
             <xs:enumeration value="familar"/>

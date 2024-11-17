@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE CatalogoVOD SYSTEM "serviciovod_ep.dtd">
+<CatalogoVOD>
+    <cuenta correo="alexis@correo.com">
+        <perfiles>
+            <perfil usuario="AlexisPaleta" idioma="es"></perfil>
+            <perfil usuario="AlvinYakitori" idioma="jp"></perfil>
+        </perfiles>
+    </cuenta>
+    <contenido>
+        <peliculas>
+            <genero nombre="Accion">
+                <titulo duracion="02:10:18">
+                    <nombre>Busqueda Implacable</nombre>
+                </titulo>
+                <titulo duracion="02:29:58">
+                    <nombre>300</nombre>
+                </titulo>
+                <titulo duracion="02:19:58">
+                    <nombre>Matrix</nombre>
+                </titulo>
+                <titulo duracion="02:33:41">
+                    <nombre>Terminator 2</nombre>
+                </titulo>
+            </genero>
+            <genero nombre="Terror">
+                <titulo duracion="01:58:21">
+                    <nombre>It</nombre>
+                </titulo>
+                <titulo duracion="02:26:13">
+                    <nombre>El resplandor</nombre>
+                </titulo>
+                <titulo duracion="03:31:59">
+                    <nombre>El conjuro</nombre>
+                </titulo>
+                <titulo duracion="02:02:02">
+                    <nombre>El exorcista</nombre>
+                </titulo>
+            </genero>
+        </peliculas>
+        <series region="JP">
+            <genero nombre="Comedia">
+                <titulo duracion="00:21:53">
+                    <nombre>Drake y Josh</nombre>
+                </titulo>
+                <titulo duracion="00:23:51">
+                    <nombre>Friends</nombre>
+                </titulo>
+                <titulo duracion="00:22:15">
+                    <nombre>How I Met Your Mother</nombre>
+                </titulo>
+                <titulo duracion="00:22:00">
+                    <nombre>Big Bang Theory</nombre>
+                </titulo>
+            </genero>
+            <genero nombre="Misterio">
+                <titulo duracion="00:24:32">
+                    <nombre>Monster</nombre>
+                </titulo>
+                <titulo duracion="00:24:45">
+                    <nombre>Death Note</nombre>
+                </titulo>
+                <titulo duracion="00:23:12">
+                    <nombre>Steins;Gate</nombre>
+                </titulo>
+                <titulo duracion="00:25:53">
+                    <nombre>Erased</nombre>
+                </titulo>
+            </genero>
+        </series>
+    </contenido>
+</CatalogoVOD>

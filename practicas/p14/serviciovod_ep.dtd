@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ENTITY % serviciovod_ep SYSTEM "serviciovod.dtd">
+<!ENTITY % region 'region (MEX|USA|ESP|ARG|KOR|JP) "USA"' >
+%serviciovod_ep;
+<!ATTLIST peliculas %region;>
+<!ATTLIST series %region;>

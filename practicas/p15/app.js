@@ -241,7 +241,7 @@ $(document).ready(function(){ //El contenido de la función se ejecutará cuando
     $(document).on('click', '.product-item', (e) => {
         const element = $(this)[0].activeElement.parentElement.parentElement;
         const id = $(element).attr('productId');
-        $.post('./backend/product-single.php', {id}, (response) => {
+        $.post('./backend/single', {id}, (response) => {
             // SE CONVIERTE A OBJETO EL JSON OBTENIDO
             let product = JSON.parse(response);
             // SE INSERTAN LOS DATOS ESPECIALES EN LOS CAMPOS CORRESPONDIENTES
@@ -358,7 +358,7 @@ function nombre(nom,edit){
         }
         return noValido;
     }
-    $.post('./backend/product-singleSearch.php', producto, (response) => {
+    $.post('./backend/singleSearch', producto, (response) => {
         let respuesta = JSON.parse(response);
 
         if(respuesta.status == "error" && edit == false){

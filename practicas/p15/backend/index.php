@@ -74,13 +74,38 @@
         if(isset($queryParams['search'])) {
             $products->search($queryParams['search']);
         }
-        
+
         $response->getBody()->write(json_encode($products->getData()));
         return $response;
     });
 
-    $app->get('/hola[/{nombre}]', function($request, $response, $args){
-        $response->write('Hola, ' . $args["nombre"]);
+    $app->post('/single', function($request, $response, $args){
+        $response = $response->withHeader('Content-Type', 'application/json; charset=utf-8'); //Para los acentos
+
+        $products = new Read("root", "cursodbAPO11?", "marketzone");
+
+        $reqPost = $request->getParsedBody();
+
+        if(isset($reqPost['id'])) {
+            $products->single($reqPost['id']);
+        }
+
+        $response->getBody()->write(json_encode($products->getData()));
+        return $response;
+    });
+
+    $app->post('/singleSearch', function($request, $response, $args){
+        $response = $response->withHeader('Content-Type', 'application/json; charset=utf-8'); //Para los acentos
+
+        $products = new Read("root", "cursodbAPO11?", "marketzone");
+
+        $reqPost = $request->getParsedBody();
+
+        if(isset($reqPost['nombre'])) {
+            $products->singleSearch($reqPost);
+        }
+
+        $response->getBody()->write(json_encode($products->getData()));
         return $response;
     });
 

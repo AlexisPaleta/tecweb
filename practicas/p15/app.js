@@ -65,7 +65,7 @@ $(document).ready(function(){ //El contenido de la función se ejecutará cuando
         if($('#search').val()) {
             let search = $('#search').val();
             $.ajax({
-                url: './backend/product-search.php?search='+$('#search').val(),
+                url: './backend/search',
                 data: {search},
                 type: 'GET',
                 success: function (response) {
@@ -190,7 +190,7 @@ $(document).ready(function(){ //El contenido de la función se ejecutará cuando
 
         
 
-        const url = edit === false ? './backend/add' : './backend/product-edit.php';
+        const url = edit === false ? './backend/add' : './backend/edit';
         
         $.post(url, finalJSON, (response) => {
             //console.log(response);

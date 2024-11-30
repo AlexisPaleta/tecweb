@@ -21,5 +21,16 @@
         $response->write('Valores: ' . $val1 . " " . $val2);
         return $response;
     });
+
+    $app->get('/testjson', function($request, $response, $args){
+        $data[0]["nombre"] = "Alexis";
+        $data[0]["apellidos"] = "Paleta Osorio";
+        $data[1]["nombre"] = "Juan";
+        $data[1]["apellidos"] = "González Pérez";
+        $response = $response->withHeader('Content-Type', 'application/json; charset=utf-8'); //Para los acentos
+        $response->getBody()->write(json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        return $response;
+    });
+
     $app->run();
 ?>

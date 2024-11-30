@@ -21,7 +21,7 @@ $(document).ready(function(){ //El contenido de la función se ejecutará cuando
 
     function listarProductos() {
         $.ajax({
-            url: './backend/product-list.php',
+            url: './backend/list',
             type: 'GET',
             success: function(response) {
                 // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
@@ -190,7 +190,7 @@ $(document).ready(function(){ //El contenido de la función se ejecutará cuando
 
         
 
-        const url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
+        const url = edit === false ? './backend/add' : './backend/product-edit.php';
         
         $.post(url, finalJSON, (response) => {
             //console.log(response);
@@ -228,7 +228,7 @@ $(document).ready(function(){ //El contenido de la función se ejecutará cuando
         if(confirm('¿Realmente deseas eliminar el producto?')) {
             const element = $(this)[0].activeElement.parentElement.parentElement;
             const id = $(element).attr('productId');
-            $.post('./backend/product-delete.php', {id}, (response) => {
+            $.post('./backend/delete', {id}, (response) => {
                 $('#product-result').hide();
                 listarProductos();
 
